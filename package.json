@@ -1,0 +1,41 @@
+{
+  "name": "nativesystem",
+  "version": "0.0.1",
+  "private": true,
+  "author": "stinodes",
+  "scripts": {
+    "flow": "flow",
+    "test": "node node_modules/jest/bin/jest.js --watch",
+    "test-ci": "jest",
+    "storybook": "storybook start -p 7007"
+  },
+  "dependencies": {
+    "glamorous-native": "^1.4.0",
+    "polished": "^1.9.2"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.4.0-alpha.1",
+    "@storybook/addon-knobs": "^3.4.0-alpha.1",
+    "@storybook/addon-links": "^3.4.0-alpha.1",
+    "@storybook/react-native": "^3.4.0-alpha.1",
+    "babel-jest": "22.4.3",
+    "babel-preset-react-native": "4.0.0",
+    "flow-bin": "0.67",
+    "jest": "22.4.3",
+    "react": "16.3.1",
+    "react-native": "0.55.3",
+    "react-native-vector-icons": "^4.6.0",
+    "react-test-renderer": "16.3.1"
+  },
+  "peerDependencies": {
+    "react": "^16.3.0",
+    "react-native": "^0.55.0",
+    "react-native-vector-icons": "4.x"
+  },
+  "jest": {
+    "preset": "react-native",
+    "testPathIgnorePatterns": [
+      "./__tests__/.*.mocks.js"
+    ]
+  }
+}
