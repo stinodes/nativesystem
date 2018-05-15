@@ -54,6 +54,21 @@ const getDefaultTheme = (): Theme => {
   }
 }
 
+type SubThemeBuilder = {
+  done: () => SubTheme,
+  withDefault: () => SubThemeBuilder,
+  withModifier: (Modifier, Styles) => SubThemeBuilder,
+  removeModifier: (Modifier) => SubThemeBuilder,
+}
+type ThemeBuilder = {
+  done: () => Theme,
+  useDefault: () => ThemeBuilder,
+  withColors: (Colors) => ThemeBuilder,
+  addColor: (string, Color) => ThemeBuilder,
+  removeColor: (string) => ThemeBuilder,
+  withSpacing: (number[]) => ThemeBuilder,
+}
+
 const extendTheme = (theme1: Theme, theme2: Theme) =>
   deepMergeObjects(theme1, theme2)
 const composeReturn =
@@ -62,7 +77,7 @@ const composeReturn =
       fn(arg1, arg2, arg3)
       return returnVal
     }
-const createSubTheme = () => {
+const createSubTheme = (): SubThemeBuilder => {
   let subTheme: SubTheme = {
     default: {},
   }
@@ -86,7 +101,7 @@ const createSubTheme = () => {
   )
   return api
 }
-const createTheme = () => {
+const createTheme = (): ThemeBuilder => {
   let theme: Theme = {
     colors: {},
     spacing: [8, 16, 32, 64],

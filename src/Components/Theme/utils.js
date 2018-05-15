@@ -1,11 +1,16 @@
 // @flow
-import type {SubTheme, Color, Modifier, Theme} from './types'
+import type {Color, Modifier, SubTheme, Theme} from './types'
 import {Platform} from 'react-native'
+import {onCatch, ThemeError, throwIf} from './ThemeError'
 
-const getIn = (obj: {[any]: any}, key: any) => obj[key]
+const getIn = (obj: { [any]: any }, key: any) => obj[key]
 
 const getComponentTheme = (theme: Theme, subThemeName: string) => getIn(theme, subThemeName)
 const getSubTheme = (theme: Theme, subThemeName: string, modifierKey: ?Modifier = 'default') =>
+  throwIf(
+    !theme.hasOwnProperty(subThemeName),
+    new ThemeError(`"getSubTheme" for name "${subThemeName}" threw an error. Does this sub-theme exist?`),
+  ) ||
   getIn(
     getComponentTheme(theme, subThemeName),
     modifierKey,
@@ -34,7 +39,7 @@ const elevationStyle = (elevation: number) => {
     },
   }
 }
-const elevationStyleFromRaised = (raised: ?boolean|number) => {
+const elevationStyleFromRaised = (raised: ?boolean | number) => {
   if (raised === true)
     return elevationStyle(3)
   else if (raised)
@@ -65,6 +70,7 @@ const deepMergeObjects = (obj1: Object, obj2: Object): Object => {
 
 export {
   getIn,
+  onCatch,
   getComponentTheme,
   getSubTheme,
   mergeSubThemeObjects,
