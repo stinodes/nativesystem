@@ -4,10 +4,17 @@
   "private": true,
   "author": "stinodes",
   "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
     "flow": "flow",
     "test": "node node_modules/jest/bin/jest.js --watch",
     "test-ci": "jest",
     "storybook": "storybook start -p 7007"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
   },
   "dependencies": {
     "glamorous-native": "^1.4.0",

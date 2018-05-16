@@ -1,6 +1,6 @@
 // @flow
 import React, {Component} from 'react'
-import {Card, Text, StyledTextInput, FormikInputWrapper, SystemView as View} from '../../../src'
+import {Card, Text, StyledTextInput, FormikInputWrapper, SystemView as View, Screen} from '../../../src'
 
 type State = {
   value: string,
@@ -22,8 +22,11 @@ export class StyledInputWithErrors extends Component<{}, State> {
   
   render() {
     return (
-      <View my={32}>
-        <Card raised={5} color="white" p={32}>
+      <Screen
+        dismissOnTap
+        f={1}>
+      <View p={3}>
+        <Card raised={5} color="white" p={3}>
           <View>
             <Text dark>
               Only numbers allowed!
@@ -46,6 +49,7 @@ export class StyledInputWithErrors extends Component<{}, State> {
           </View>
         </Card>
       </View>
+      </Screen>
     )
   }
 }

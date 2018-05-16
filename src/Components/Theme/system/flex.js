@@ -7,6 +7,7 @@ const properties = {
   as: 'alignSelf',
   fd: 'flexDirection',
   f: 'flex',
+  fw: 'flexWrap',
 }
 
 const isFlexProp = (key) => !!properties[key]

@@ -23,24 +23,40 @@ const getDefaultTheme = (): Theme => {
     raisinBlack: '#212121',
     arsenic: '#424242',
     sonicSilver: '#757575',
+    
+    error: '#ff8090',
 
     fallback: '#2d3047',
   }
   return {
     colors,
-    spacing: [8, 16, 32, 64],
+    spacing: [0, 8, 16, 32, 64],
 
     text: {
       // sizes: 48, 58
       // weights: medium, bold
       default: {
         color: colors.black,
-        fontFamily: 'Montserrat Medium',
+        fontFamily: 'Montserrat-Medium',
         fontSize: 48 * ratio,
+      },
+      small: {
+        fontSize: 38 * ratio,
       },
       large: {
         fontSize: 58 * ratio,
-        fontFamily: 'Montserrat Bold',
+        fontFamily: 'Montserrat-Bold',
+      },
+    },
+    textInput: {
+      default: {
+        fontSize: 48 * ratio,
+        // lineHeight: 50 * ratio,
+        color: colors.black,
+      },
+      large: {
+        fontSize: 58 * ratio,
+        // lineHeight: 60 * ratio,
       }
     },
     button: {
@@ -63,6 +79,7 @@ type SubThemeBuilder = {
 type ThemeBuilder = {
   done: () => Theme,
   useDefault: () => ThemeBuilder,
+  withSubTheme: (string, SubTheme) => ThemeBuilder,
   withColors: (Colors) => ThemeBuilder,
   addColor: (string, Color) => ThemeBuilder,
   removeColor: (string) => ThemeBuilder,
@@ -77,9 +94,9 @@ const composeReturn =
       fn(arg1, arg2, arg3)
       return returnVal
     }
-const createSubTheme = (): SubThemeBuilder => {
+const createSubTheme = (styles?: Styles = {}): SubThemeBuilder => {
   let subTheme: SubTheme = {
-    default: {},
+    default: styles,
   }
   let api = {}
   api.done = () => subTheme

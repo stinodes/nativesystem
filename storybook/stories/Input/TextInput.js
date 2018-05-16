@@ -1,9 +1,8 @@
 // @flow
 import * as React from 'react'
-import {select, text} from '@storybook/addon-knobs'
 
-import {Row, Text, TextInput, Screen, Button, SystemView as View} from '../../../src'
 import type {RNTextInput} from '../../../src'
+import {Button, Row, Screen, SystemView as View, Text, TextInput} from '../../../src'
 
 type Props = {}
 type State = {
@@ -26,7 +25,10 @@ export class InputInRows extends React.Component<Props, State> {
     
     return (
       <Screen
-        justifyContent="center">
+        dismissKeyboardOnTap
+        ignoredTargets={() => [this.input1, this.input2, this.input3]}
+        f={1}
+        jc="center">
         <View>
           <Row>
             <TextInput
@@ -55,38 +57,46 @@ export class InputInRows extends React.Component<Props, State> {
   }
 }
 
-export class FocusBlurInput extends React.Component<{}, {value: string}> {
+export class FocusBlurInput extends React.Component<{}, { value: string }> {
   state = {
     value: '',
   }
   input: RNTextInput
   
   focus = () => this.input.focus()
-  blur= () => this.input.blur()
+  blur = () => this.input.blur()
   
   render() {
     return (
       <Screen
         dismissKeyboardOnTap
         ignoredTargets={() => [this.input]}
-        justifyContent="center">
-        <View>
-          <View flexDirection="row" justifyContent="space-around" marginVertical={16}>
-            <Button small onPress={this.focus}>
-              <Text color="white">
-                Focus Field
-              </Text>
-            </Button>
-            <Button small onPress={this.blur}>
-              <Text color="white">
-                Blur Field
-              </Text>
-            </Button>
-            <Button small onPress={() => {}}>
-              <Text color="white">
-                Random Button
-              </Text>
-            </Button>
+        f={1}>
+        <View f={1}>
+          <View fd="row" jc="space-around" fw="wrap" my={2}>
+            <View my={1}>
+              <Button small onPress={this.focus}>
+                <Text color="white">
+                  Focus Field
+                </Text>
+              </Button>
+            </View>
+            <View my={1}>
+              <Button small onPress={this.blur}>
+                <Text color="white">
+                  Blur Field
+                </Text>
+              </Button>
+            </View>
+            
+            <View my={1}>
+              <Button small onPress={() => {
+              }}>
+                <Text color="white">
+                  Random Button
+                </Text>
+              </Button>
+            </View>
           </View>
           <Row>
             <TextInput

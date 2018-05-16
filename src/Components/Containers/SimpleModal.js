@@ -55,16 +55,16 @@ class SimpleModal extends PureComponent<Props> {
       <CardModal
         {...props}>
         {title &&
-        <View py={8}>
+        <View mb={2}>
           <Text color="blackOlive" bold>{title.props.children}</Text>
         </View>
         }
         {rest}
         {actions &&
-        <View fd="row" mt={16}>
+        <View fd="row" mt={2} jc="center">
           {actions.map(
             (action, i) => (
-              <View key={'modalchild'+i} f={1} ml={i !== 0 ? 1 : 0} mr={i !== actions.length - 1 ? 1 : 0}>
+              <View key={'modalAction'+i} f={1} ml={i !== 0 ? 1 : 0} mr={i !== actions.length - 1 ? 1 : 0}>
                 <Button modifier={'small'} {...action.props}/>
               </View>
             )

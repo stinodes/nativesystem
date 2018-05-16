@@ -1,27 +1,37 @@
-import React from 'react';
+import React from 'react'
 
-import { storiesOf, addDecorator } from '@storybook/react-native';
-import { linkTo } from '@storybook/addon-links';
+import {addDecorator, storiesOf} from '@storybook/react-native'
+import {linkTo} from '@storybook/addon-links'
 import {withKnobs} from '@storybook/addon-knobs/react'
 
 import Welcome from './Welcome'
-import {StyledButtonColors, StyledButtonSizes, WithSpinner, StyledButtonPlayground} from './Buttons/StyledButton'
-import {TextSizes, TextColors, TextPlayground} from './Text'
+import {StyledButtonColors, StyledButtonPlayground, StyledButtonSizes, WithSpinner} from './Buttons/StyledButton'
+import {TextColors, TextPlayground, TextSizes} from './Text'
 import {Cards, CardWithChildren} from './Containers/Card'
 import {Rows} from './Containers/Row'
-import {centerDecorator, screenDecorator, createThemeDecorator} from './utils'
+import {centerDecorator, createThemeDecorator, screenDecorator} from './utils'
 import {FocusBlurInput, InputInRows} from './Input/TextInput'
 import {StyledInputWithErrors} from './Input/StyledInput'
 import {FreeBodyModal, TitleActionsModal} from './Containers/CardModal'
-import {extendTheme, theme} from '../../src/Components/Theme'
-import {ExtendedTheme} from './Theme'
+import {createSubTheme, createTheme} from '../../src/Components/Theme'
 
 addDecorator(centerDecorator, module)
 addDecorator(screenDecorator, module)
-addDecorator(createThemeDecorator(), module)
+addDecorator(
+  createThemeDecorator(
+    createTheme()
+      .useDefault()
+      .withSubTheme(
+        'card',
+        createSubTheme({borderRadius: 10}).done()
+      )
+      .done()
+  ),
+  module
+)
 
 storiesOf('Welcome', module)
-  .add('To Storybook', () => <Welcome showApp={linkTo('Button')} />)
+  .add('To Storybook', () => <Welcome showApp={linkTo('Button')}/>)
 storiesOf('Containers/Card', module)
   .addDecorator(withKnobs)
   .add('With children', () => <CardWithChildren/>)

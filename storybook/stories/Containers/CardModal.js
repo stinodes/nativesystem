@@ -22,12 +22,12 @@ export class FreeBodyModal extends Component<{}, State> {
           visible={this.state.visible}
           onRequestClose={() => this.setState({visible: false})}>
           <View>
-            <View mb={8}>
+            <View mb={1}>
               <Text modifier="large">
                 This is a modal.
               </Text>
             </View>
-            <View mb={8}>
+            <View mb={1}>
               <Text>
                 You can put whatever in here. It's text in this case!
                 And maybe a button...
@@ -53,7 +53,7 @@ export class TitleActionsModal extends Component<{}, State & {acknowledged: bool
       <View jc="center" ai="center">
   
         {this.state.clickedButton &&
-          <View mv={16}>
+          <View my={2}>
             <Text align="center">You pressed {this.state.acknowledged ? 'OK' : 'NO'}!</Text>
           </View>
         }

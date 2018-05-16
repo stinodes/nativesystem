@@ -1,6 +1,6 @@
 // @flow
 import React, {PureComponent} from 'react'
-import {TextInput, findNodeHandle} from 'react-native'
+import {TextInput, findNodeHandle, TouchableWithoutFeedback} from 'react-native'
 import glamorous from 'glamorous-native'
 // import ReactNativeTagHandles from 'ReactNativeTagHandles'
 
@@ -32,13 +32,14 @@ class DismissArea extends PureComponent<Props> {
         TextInput.State.currentlyFocusedField()
       )
     }
+    console.log('dismiss')
     return false
   }
   
   render() {
     return (
       <View style={this.props.style} onStartShouldSetResponderCapture={this.dismiss}>
-        {this.props.children}
+            {this.props.children}
       </View>
     )
   }

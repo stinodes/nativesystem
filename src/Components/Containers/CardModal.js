@@ -1,21 +1,21 @@
+import type {Node} from 'react'
 // @flow
 import React from 'react'
 import {Modal, TouchableWithoutFeedback} from 'react-native'
-import {transparentize} from 'polished'
 import glamorous from 'glamorous-native'
 import {Base} from '../Buttons'
-import {Card} from './Card'
-
 import type {CardProps} from './Card'
-import type {Node} from 'react'
+import {Card} from './Card'
+import {backgroundColor, withFallback} from '../Theme/system'
 
-const Overlay = glamorous(Base)({
-  flex: 1,
-  padding: 32,
-  justifyContent: 'center'
-}, ({theme}) => ({
-  backgroundColor: transparentize(0.2, theme.colors.blackOlive),
-}))
+const Overlay = glamorous(Base)(
+  {
+    flex: 1,
+    padding: 32,
+    justifyContent: 'center'
+  },
+  withFallback(backgroundColor),
+)
 
 type ModalProps = {
   visible: boolean,
@@ -40,7 +40,7 @@ const CardModal = ({children, visible, onRequestClose, ...props}: Props) => {
         containerStyle={{flex: 1}}
         onPress={onRequestClose}>
         <TouchableWithoutFeedback onPress={e => e.stopPropagation()}>
-          <Card raised={5} p={32} color="white" {...props}>
+          <Card raised={20} p={3} color="white" {...props}>
             {children}
           </Card>
         </TouchableWithoutFeedback>

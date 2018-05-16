@@ -44,7 +44,7 @@ export class Rows extends Component<{}, { inputValue: string }> {
         <Row
           rightIcon="info"
           rightText="An error occurred"
-          rightColor="#ff8090">
+          rightColor="error">
           <Text>With custom right color</Text>
         </Row>
         <Row
