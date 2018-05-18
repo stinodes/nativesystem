@@ -1,8 +1,8 @@
-import type {Node} from 'react'
 // @flow
-import React from 'react'
+import * as React from 'react'
 import {Modal, TouchableWithoutFeedback} from 'react-native'
 import glamorous from 'glamorous-native'
+
 import {Base} from '../Buttons'
 import type {CardProps} from './Card'
 import {Card} from './Card'
@@ -26,7 +26,7 @@ type Props =
   & ModalProps
   & CardProps
   & {
-  children: Node,
+  children: React.Node,
 }
 
 const CardModal = ({children, visible, onRequestClose, ...props}: Props) => {

@@ -1,12 +1,11 @@
 // @flow
-import React from 'react'
+import * as React from 'react'
 import {withTheme} from 'glamorous-native'
 
-import type {Node} from 'react'
 import type {ThemeProps} from './Theme'
 
 type Props = ThemeProps&{
-  children: (ThemeProps => Node),
+  children: (ThemeProps => React.Node),
 }
 
 const WithThemeFAC = withTheme(({children, theme}: Props) => children({theme}))
