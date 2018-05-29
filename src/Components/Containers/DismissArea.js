@@ -32,7 +32,6 @@ class DismissArea extends PureComponent<Props> {
         TextInput.State.currentlyFocusedField()
       )
     }
-    console.log('dismiss')
     return false
   }
   

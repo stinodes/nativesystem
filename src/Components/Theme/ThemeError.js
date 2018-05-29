@@ -1,17 +1,20 @@
 // @flow
 class ThemeError extends Error {
-  constructor (...args) {
+  constructor (...args: any[]) {
     super(...args)
   }
 }
 
-const onCatch = <Args, R>(fn: (...Args) => R, callback: (e: Error, ...Args) => any) => (...args: Args) => {
-  try {
-    return fn(...args)
+const onCatch = <Args: [], R>(fn: (...Args) => R, callback: (e: Error, ...Args) => ?R) => {
+  const wrap = (args: Args): ?R => {
+    try {
+      return fn(...args)
+    }
+    catch (e) {
+      callback(e, ...args)
+    }
   }
-  catch (e) {
-    callback(e, ...args)
-  }
+  return (...args: Args) => wrap(args)
 }
 const throwIf = (condition: boolean, exception: Error|() => Error) => {
   if (condition) {

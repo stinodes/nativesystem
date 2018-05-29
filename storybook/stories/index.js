@@ -14,6 +14,7 @@ import {FocusBlurInput, InputInRows} from './Input/TextInput'
 import {StyledInputWithErrors} from './Input/StyledInput'
 import {FreeBodyModal, TitleActionsModal} from './Containers/CardModal'
 import {createSubTheme, createTheme} from '../../src/Components/Theme'
+import {KeyboardAnimated, KeyboardComposed, KeyboardProviderConsumer} from './Keyboard'
 
 addDecorator(centerDecorator, module)
 addDecorator(screenDecorator, module)
@@ -59,4 +60,9 @@ storiesOf('Buttons/Styled', module)
   .add('Colors', () => <StyledButtonColors/>)
   .add('With spinners', () => <WithSpinner/>)
   .add('Playground', () => <StyledButtonPlayground/>)
+storiesOf('Keyboard', module)
+  .addDecorator(centerDecorator)
+  .add('With Provider + Consumer', () => <KeyboardProviderConsumer/>)
+  .add('Composed', () => <KeyboardComposed/>)
+  .add('Animated', () => <KeyboardAnimated/>)
 
