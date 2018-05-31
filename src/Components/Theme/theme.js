@@ -2,7 +2,7 @@
 import {deepMergeObjects} from './utils'
 import type {Color, Colors, Modifier, SubTheme, Theme} from './types'
 import {getDefaultTheme} from './defaultTheme'
-import {ThemeError} from './ThemeError'
+import {ThemeError, throwIf} from './ThemeError'
 
 type Styles = { [string]: string | number }
 
@@ -61,6 +61,7 @@ const createSubTheme = (styles?: Styles = {}): SubThemeBuilder => {
   }
   return new API()
 }
+
 const isInvalidTheme = (theme: any) =>
   (
     typeof theme !== 'object' ||
@@ -70,8 +71,11 @@ const isInvalidTheme = (theme: any) =>
   )
  
 const createTheme = (initial?: InitialThemeArg = {colors: {}, spacing: []}): ThemeBuilder => {
-  if (isInvalidTheme(initial))
-    throw new ThemeError('Passed argument is not a theme.')
+  
+  throwIf(
+    isInvalidTheme(initial),
+    new ThemeError('Passed argument is not a theme.')
+  )
   
   let theme: Theme = {
     colors: {},
