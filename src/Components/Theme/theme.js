@@ -8,7 +8,7 @@ type Styles = { [string]: string | number }
 
 interface SubThemeBuilder {
   done: () => SubTheme,
-  withDefault: () => SubThemeBuilder,
+  withDefault: (Styles) => SubThemeBuilder,
   withModifier: (Modifier, Styles) => SubThemeBuilder,
   removeModifier: (Modifier) => SubThemeBuilder,
 }
@@ -16,6 +16,7 @@ interface ThemeBuilder {
   done: () => Theme,
   useDefault: () => ThemeBuilder,
   withSubTheme: (string, SubTheme) => ThemeBuilder,
+  removeSubTheme: (string) => ThemeBuilder,
   withColors: (Colors) => ThemeBuilder,
   addColor: (string, Color) => ThemeBuilder,
   removeColor: (string) => ThemeBuilder,
@@ -28,9 +29,6 @@ type InitialThemeArg = {
 }
 type FN = (...args: any[]) => any
 
-const extendTheme = (theme1: Theme, theme2: Theme) =>
-  deepMergeObjects(theme1, theme2)
-
 const composeReturn = <R>(returnVal: R, fn: FN): FN =>
     (...args): R => {
       fn(...args)
@@ -42,7 +40,7 @@ const createSubTheme = (styles?: Styles = {}): SubThemeBuilder => {
   }
   class API {
     done = () => subTheme
-    withDefault: () => SubThemeBuilder = composeReturn(
+    withDefault: (Styles) => SubThemeBuilder = composeReturn(
       this,
       (styles: Styles) => subTheme = {...subTheme, default: styles}
     )
@@ -93,6 +91,15 @@ const createTheme = (initial?: InitialThemeArg = {colors: {}, spacing: []}): The
       this,
       (name: string, subTheme: SubTheme) => theme = {...theme, [name]: subTheme}
     )
+    removeSubTheme: (string) => ThemeBuilder = composeReturn(
+      this,
+      (name: string) => {
+        const newTheme = {...theme}
+        delete newTheme[name]
+        theme = newTheme
+        return this
+      }
+    )
     withColors: (Colors) => ThemeBuilder = composeReturn(
       this,
       (colors: Colors) => theme = {...theme, colors}
@@ -119,4 +126,4 @@ const createTheme = (initial?: InitialThemeArg = {colors: {}, spacing: []}): The
   return new API()
 }
 
-export {createTheme, extendTheme, createSubTheme}
+export {createTheme, createSubTheme}

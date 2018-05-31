@@ -1,6 +1,5 @@
 // @flow
-
-import {createTheme} from './theme'
+import {createSubTheme, createTheme} from './theme'
 import {getDefaultTheme} from './defaultTheme'
 import {ThemeError} from './ThemeError'
 
@@ -31,8 +30,43 @@ expect.extend({
   }
 })
 
+describe('SubThemeCreator', () => {
+  test('Creates a sub-theme with an empty default style', () => {
+    expect(
+      createSubTheme()
+        .done()
+    ).toEqual({default: {}})
+  })
+  test('Adds default styling', () => {
+    const styles = {backgroundColor: 'black'}
+    expect(
+      createSubTheme()
+        .withDefault(styles)
+        .done()
+    ).toHaveDeepValue('default', styles)
+  })
+  test('Adds modifiers', () => {
+    const styles = {backgroundColor: 'red'}
+    expect(
+      createSubTheme()
+        .withModifier('red', styles)
+        .done()
+    ).toHaveDeepValue('red', styles)
+  })
+  test('Removes modifiers', () => {
+    const styles = {backgroundColor: 'red'}
+    const builder = createSubTheme()
+      .withModifier('red', styles)
+    expect(builder.done()).toHaveDeepValue('red', styles)
+    expect(
+      builder
+        .removeModifier('red')
+        .done()
+    ).toHaveDeepValue('red', undefined)
+  })
+})
+
 describe('ThemeCreator', () => {
-  
   test('returns initially passed object', () => {
     const param = {}
     expect(
@@ -106,5 +140,37 @@ describe('ThemeCreator', () => {
         .done()
     ).toHaveDeepValue('colors', colors)
   })
+  test('adds spacings', () => {
+    const spacings = [0, 4, 8, 10]
+    expect(
+      createTheme()
+        .withSpacing(spacings)
+        .done()
+    ).toHaveDeepValue('spacing', spacings)
+  })
+  test('adds sub-themes', () => {
+    const subTheme = createSubTheme()
+      .withDefault({backgroundColor: 'black'})
+      .withModifier('red', {backgroundColor: 'red'})
+      .done()
+    expect(
+      createTheme()
+        .withSubTheme('background', subTheme)
+        .done()
+    ).toHaveDeepValue('background', subTheme)
+  })
+  test('removes sub-themes', () => {
+    const subTheme = createSubTheme()
+      .withDefault({backgroundColor: 'black'})
+      .withModifier('red', {backgroundColor: 'red'})
+      .done()
+    const theme = createTheme()
+      .withSubTheme('background', subTheme)
+    expect(theme.done()).toHaveDeepValue('background', subTheme)
+    expect(
+      theme
+        .removeSubTheme('background')
+        .done()
+    ).toHaveDeepValue('background', undefined)
+  })
 })
-
