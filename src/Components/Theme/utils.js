@@ -1,12 +1,11 @@
 // @flow
-import type {Color, Modifier, SubTheme, Theme} from './types'
+import type {Color, Modifier, Styles, SubTheme, Theme} from './types'
 import {Platform} from 'react-native'
-import {onCatch, ThemeError, throwIf} from './ThemeError'
-
-const getIn = (obj: { [any]: any }, key: any) => obj[key]
+import {ThemeError} from './ThemeError'
+import {getIn, throwIf} from 'fnional'
 
 const getComponentTheme = (theme: Theme, subThemeName: string) => getIn(theme, subThemeName)
-const getSubTheme = (theme: Theme, subThemeName: string, modifierKey: ?Modifier = 'default') =>
+const getSubTheme = (theme: Theme, subThemeName: string, modifierKey: ?Modifier = 'default'): ?Styles =>
   throwIf(
     !theme.hasOwnProperty(subThemeName),
     new ThemeError(`"getSubTheme" for name "${subThemeName}" threw an error. Does this sub-theme exist?`),
@@ -16,7 +15,7 @@ const getSubTheme = (theme: Theme, subThemeName: string, modifierKey: ?Modifier 
     modifierKey,
   )
 
-const mergeSubThemeObjects = (subTheme1: SubTheme = {}, subTheme2: SubTheme = {}) =>
+const mergeSubThemeObjects = (subTheme1: ?Styles = {}, subTheme2: ?Styles = {}) =>
   ({...subTheme1, ...subTheme2})
 
 const subThemeWithModifier = (theme: Theme, subThemeName: string, modifierName: ?Modifier) =>
@@ -69,8 +68,6 @@ const deepMergeObjects = (obj1: Object, obj2: Object): Object => {
 }
 
 export {
-  getIn,
-  onCatch,
   getComponentTheme,
   getSubTheme,
   mergeSubThemeObjects,

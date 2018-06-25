@@ -2,7 +2,7 @@
 import React from 'react'
 import {StyleSheet} from 'react-native'
 import glamorous, {View} from 'glamorous-native'
-import {backgroundColor, flex} from './Theme'
+import {backgroundColor, flex, alpha} from './Theme'
 
 import type {ComponentType} from 'react'
 import type {ColorProps, FlexProps} from './Theme'
@@ -17,6 +17,7 @@ const Separator: ComponentType<Props> = glamorous.view(
   {},
   backgroundColor,
   flex,
+  alpha,
   ({theme, ...props}) => ({
     [props.vertical ? 'width' : 'height']: typeof props.thickness === 'number' ? props.thickness : StyleSheet.hairlineWidth,
   })

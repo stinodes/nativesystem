@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react'
-import type {TextInputProps} from './TextInput'
+import {TextInput} from './TextInput'
+import {StyledTextInput} from './StyledInput'
 
 export type EnhancedHandlers = {
   onChange: (name: string, value: string) => any,
@@ -12,7 +13,7 @@ export type EnhancedHandlers = {
 }
 
 
-const FormikInputWrapper = (TextInputComponent: React.ComponentType<*>) => {
+export const FormikInputWrapper = (TextInputComponent: React.ComponentType<*>) => {
   
   return ({onChange, onChangeText, name, ...props}: EnhancedHandlers&*) => (
     <TextInputComponent
@@ -25,5 +26,5 @@ const FormikInputWrapper = (TextInputComponent: React.ComponentType<*>) => {
       }/>
   )
 }
-
-export {FormikInputWrapper}
+export const FTextInput = FormikInputWrapper(TextInput)
+export const FStyledTextInput = FormikInputWrapper(StyledTextInput)

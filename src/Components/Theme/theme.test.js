@@ -185,7 +185,7 @@ describe('ThemeCreator', () => {
       createTheme()
         .withSubTheme(subThemeName, subTheme)
         .done()
-    ).toHaveDeepValue([subThemeName, subTheme])
+    ).toHaveDeepValue(subThemeName, subTheme)
   })
   test('replaces spacing', () => {
     const spacing = [2, 4, 6]
@@ -193,6 +193,6 @@ describe('ThemeCreator', () => {
       createTheme()
         .withSpacing(spacing)
         .done()
-    ).toHaveDeepValue(['spacing', spacing])
+    ).toHaveDeepValue('spacing', spacing)
   })
 })

@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react'
-import {Animated, Platform, Keyboard as KeyboardAPI} from 'react-native'
+import {Animated, Keyboard as KeyboardAPI, Platform} from 'react-native'
 
 // $FlowFixMe Todo
 const {Consumer, Provider} = React.createContext()
@@ -13,7 +13,7 @@ type KeyboardEvent = {
 type Props = {
   onAnimationComplete?: () => any,
   forceAndroid?: boolean,
-  children: Node|React.Element<*>,
+  children: Node | React.Element<*>,
 }
 type State = {
   keyboardHeight: number,
@@ -93,11 +93,18 @@ class KeyboardProvider extends React.Component<Props, State> {
 
 const KeyboardConsumer = Consumer
 
-const Keyboard = ({children, ...props}: { ...Props, children: (Context) => Node|React.Element<*> }) => (
+const Keyboard = ({children, ...props}: { ...Props, children: (Context) => Node | React.Element<*> }) => (
   <KeyboardProvider {...props}>
     <KeyboardConsumer children={children}/>
   </KeyboardProvider>
 )
 
+const KeyboardAnimatedView = (props: {...Props, children?: void}) =>
+  <Keyboard {...props}>
+    {
+      ({keyboardAnimation, keyboardHeight}: Context) =>
+        <Animated.View style={{height: keyboardAnimation}}/>
+    }
+  </Keyboard>
 
-export {KeyboardProvider, KeyboardConsumer, Keyboard}
+export {KeyboardProvider, KeyboardConsumer, Keyboard, KeyboardAnimatedView}

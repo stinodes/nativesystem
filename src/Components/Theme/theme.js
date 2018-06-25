@@ -1,8 +1,8 @@
 // @flow
-import {deepMergeObjects} from './utils'
 import type {Color, Colors, Modifier, SubTheme, Theme} from './types'
 import {getDefaultTheme} from './defaultTheme'
-import {ThemeError, throwIf} from './ThemeError'
+import {ThemeError} from './ThemeError'
+import {composeReturn, throwIf} from 'fnional'
 
 type Styles = { [string]: string | number }
 
@@ -29,11 +29,6 @@ type InitialThemeArg = {
 }
 type FN = (...args: any[]) => any
 
-const composeReturn = <R>(returnVal: R, fn: FN): FN =>
-    (...args): R => {
-      fn(...args)
-      return returnVal
-    }
 const createSubTheme = (styles?: Styles = {}): SubThemeBuilder => {
   let subTheme: SubTheme = {
     default: styles,

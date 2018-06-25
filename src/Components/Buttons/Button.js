@@ -15,13 +15,15 @@ const GButton = g(Base)(
   {elevation: 0}
 )
 
-type Props = ModProps&ColorProps&ThemeProps&RaisedProps&{}
+type Props = ModProps&ColorProps&ThemeProps&RaisedProps&{
+  ripple?: Color,
+}
 
 class Button extends React.Component<Props> {
   render() {
-    const {theme, color, ...props} = this.props
+    const {theme, color, ripple, ...props} = this.props
     const buttonTheme = subTheme('button')(this.props)
-    const backgroundColor: Color = getColor(theme, color, 'fallback')||''
+    const backgroundColor: Color = getColor(theme, ripple || color, 'fallback')||''
     const background = Base.Ripple(backgroundColor, true)
     const raisedStyle = raised(this.props)
     return (

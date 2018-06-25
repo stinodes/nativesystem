@@ -5,8 +5,9 @@ export type Modifier = 'default'|'large'|'small'|string
 export type Colors = {
   [name: string]: Color,
 }
+export type Styles = {[string]: string|number}
 export type ThemeModifiers<ThemeType> = { [?Modifier]: ThemeType, }
-export type SubTheme = ThemeModifiers<{[string]: string|number}>
+export type SubTheme = ThemeModifiers<Styles>
 export type Theme = {
   [string]: SubTheme,
   colors: Colors,
@@ -23,6 +24,7 @@ export type TextProps = {
   bold?: boolean,
   align?: 'center'|'left'|'right',
 }
+export type AlphaProps = {alpha: number}
 export type SpaceProps = {
   p?: number,
   px?: number,

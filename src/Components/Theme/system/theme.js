@@ -1,6 +1,6 @@
 // @flow
 import {elevationStyleFromRaised, getColor, subThemeWithModifier} from '../utils'
-import type {Color, ColorProps, ModProps, RaisedProps, SubTheme, ThemeProps} from '../types'
+import type {AlphaProps, Color, ColorProps, ModProps, RaisedProps, SubTheme, ThemeProps} from '../types'
 
 export const subTheme = (subTheme: string) => ({theme, modifier}: ThemeProps&ModProps): SubTheme =>
   subThemeWithModifier(theme, subTheme, modifier)
@@ -11,3 +11,4 @@ export const withFallback = (styleFn: (ThemeProps&ColorProps) => {[string]: ?Col
   ({theme, color}: ThemeProps&ColorProps) => styleFn({theme, color: color || 'fallback'})
 
 export const raised = ({theme, raised}: ThemeProps&RaisedProps) => ({...elevationStyleFromRaised(raised)})
+export const alpha = ({alpha}: ThemeProps&AlphaProps) => ({opacity: alpha})
