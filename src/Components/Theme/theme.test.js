@@ -104,5 +104,27 @@ describe('ThemeCreator', () => {
         .done()
     ).toHaveDeepValue(['colors', colors])
   })
+  test('adds sub-themes', () => {
+    const subThemeName = 'button'
+    const subTheme = {
+      default: {
+        backgroundColor: 'black',
+        borderRadius: 3,
+      }
+    }
+    expect(
+      createTheme()
+        .withSubTheme(subThemeName, subTheme)
+        .done()
+    ).toHaveDeepValue([subThemeName, subTheme])
+  })
+  test('replaces spacing', () => {
+    const spacing = [2, 4, 6]
+    expect(
+      createTheme()
+        .withSpacing(spacing)
+        .done()
+    ).toHaveDeepValue(['spacing', spacing])
+  })
 })
 
