@@ -43,6 +43,9 @@
   },
   "jest": {
     "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/?!(fnional)"
+    ],
     "testPathIgnorePatterns": [
       "./__tests__/.*.mocks.js"
     ]
