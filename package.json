@@ -17,7 +17,7 @@
     ]
   },
   "dependencies": {
-    "fnional": "^0.0.1",
+    "fnional": "^0.0.2",
     "glamorous-native": "^1.4.0",
     "polished": "^1.9.2"
   },

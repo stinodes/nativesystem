@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>32/32</span>
+        <span class='fraction'>29/29</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>16/16</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>32/32</span>
+        <span class='fraction'>29/29</span>
       </div>
     </div>
     <p class="quiet">
@@ -206,10 +206,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">95x</span>
-<span class="cline-any cline-yes">19x</span>
-<span class="cline-any cline-yes">19x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">6x</span>
@@ -239,7 +235,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -247,19 +243,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -300,15 +296,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// @flow
-import {deepMergeObjects} from './utils'
 import type {Color, Colors, Modifier, SubTheme, Theme} from './types'
 import {getDefaultTheme} from './defaultTheme'
-import {ThemeError, throwIf} from './ThemeError'
+import {ThemeError} from './ThemeError'
+import {composeReturn, throwIf} from 'fnional'
 &nbsp;
 type Styles = { [string]: string | number }
 &nbsp;
@@ -327,6 +327,7 @@ interface ThemeBuilder {
   addColor: (string, Color) =&gt; ThemeBuilder,
   removeColor: (string) =&gt; ThemeBuilder,
   withSpacing: (number[]) =&gt; ThemeBuilder,
+  withRatio: (number) =&gt; ThemeBuilder,
 }
 type InitialThemeArg = {
   colors?: Colors,
@@ -335,11 +336,6 @@ type InitialThemeArg = {
 }
 type FN = (...args: any[]) =&gt; any
 &nbsp;
-const composeReturn = &lt;R&gt;(returnVal: R, fn: FN): FN =&gt;
-    (...args): R =&gt; {
-      fn(...args)
-      return returnVal
-    }
 const createSubTheme = (styles?: Styles = {}): SubThemeBuilder =&gt; {
   let subTheme: SubTheme = {
     default: styles,
@@ -427,6 +423,10 @@ const createTheme = (initial?: InitialThemeArg = {colors: {}, spacing: []}): The
       this,
       (spacing: number[]) =&gt; theme = {...theme, spacing}
     )
+    withRatio: (number) =&gt; ThemeBuilder = composeReturn(
+      this,
+      (ratio: number) =&gt; theme = {...theme, ratio}
+    )
   }
   
   return new API()
@@ -439,7 +439,7 @@ export {createTheme, createSubTheme}
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Jun 25 2018 11:04:09 GMT+0200 (Central European Summer Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jun 26 2018 11:07:43 GMT+0200 (Central European Summer Time)
 </div>
 </div>
 <script src="prettify.js"></script>

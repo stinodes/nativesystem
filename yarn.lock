@@ -3622,9 +3622,9 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.1"
     readable-stream "^2.0.4"
 
-fnional@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/fnional/-/fnional-0.0.1.tgz#4bd28c6674bf4ca7e200681d1174632ffcbe8ae2"
+fnional@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/fnional/-/fnional-0.0.2.tgz#cef56e10a621d63afa89e2f958c1e2a18466d715"
   dependencies:
     babel-jest "^23.0.1"
     flow-bin "0.67"
