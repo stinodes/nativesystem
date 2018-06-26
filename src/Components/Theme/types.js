@@ -12,6 +12,7 @@ export type Theme = {
   [string]: SubTheme,
   colors: Colors,
   spacing: number[],
+  ratio?: number,
 }
 
 

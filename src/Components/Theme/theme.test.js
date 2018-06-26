@@ -195,4 +195,12 @@ describe('ThemeCreator', () => {
         .done()
     ).toHaveDeepValue('spacing', spacing)
   })
+  test('replaces ratio', () => {
+    const ratio = 0.12
+    expect(
+      createTheme()
+        .withRatio(ratio)
+        .done()
+    ).toHaveDeepValue('ratio', ratio)
+  })
 })

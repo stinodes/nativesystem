@@ -21,6 +21,7 @@ interface ThemeBuilder {
   addColor: (string, Color) => ThemeBuilder,
   removeColor: (string) => ThemeBuilder,
   withSpacing: (number[]) => ThemeBuilder,
+  withRatio: (number) => ThemeBuilder,
 }
 type InitialThemeArg = {
   colors?: Colors,
@@ -115,6 +116,10 @@ const createTheme = (initial?: InitialThemeArg = {colors: {}, spacing: []}): The
     withSpacing: (number[]) => ThemeBuilder = composeReturn(
       this,
       (spacing: number[]) => theme = {...theme, spacing}
+    )
+    withRatio: (number) => ThemeBuilder = composeReturn(
+      this,
+      (ratio: number) => theme = {...theme, ratio}
     )
   }
   
