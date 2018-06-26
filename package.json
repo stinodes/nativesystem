@@ -1,7 +1,6 @@
 {
   "name": "nativesystem",
   "version": "0.0.2",
-  "private": true,
   "author": "stinodes",
   "scripts": {
     "android": "react-native run-android",
