@@ -50,7 +50,7 @@ const getColor = (theme: Theme, color: ?Color, defaultColor?: Color) =>
 
 const getSpacing = (theme: Theme, spacing: ?number) =>
   typeof spacing === 'number' ?
-    (spacing >= 0 && spacing < 4 ? theme.spacing[spacing] : spacing) :
+    (spacing >= 0 && spacing < theme.spacing.length ? theme.spacing[spacing] : spacing) :
     null
 
 const deepMergeObjects = (obj1: Object, obj2: Object): Object => {
