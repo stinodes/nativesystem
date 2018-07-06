@@ -15,14 +15,19 @@ const getSubTheme = (theme: Theme, subThemeName: string, modifierKey: ?Modifier 
     modifierKey,
   )
 
-const mergeSubThemeObjects = (subTheme1: ?Styles = {}, subTheme2: ?Styles = {}) =>
-  ({...subTheme1, ...subTheme2})
-
-const subThemeWithModifier = (theme: Theme, subThemeName: string, modifierName: ?Modifier) =>
-  mergeSubThemeObjects(
-    getSubTheme(theme, subThemeName),
-    getSubTheme(theme, subThemeName, modifierName),
+const mergeSubThemeObjects = (...args: Array<?Styles>) =>
+  args.reduce(
+    (prev, subTheme) => subTheme ? {...prev, ...subTheme} : prev,
+    {}
   )
+
+const subThemeWithModifier = (theme: Theme, subThemeName: string, modifier: ?Modifier|Modifier[]) => {
+  let modifiers = !Array.isArray(modifier) ? [modifier || 'default'] : modifier
+  return mergeSubThemeObjects(
+    ...modifiers
+      .map(modifier => getSubTheme(theme, subThemeName, modifier))
+  )
+}
 
 const elevationStyle = (elevation: number) => {
   if (Platform.OS === 'android')

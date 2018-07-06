@@ -17,7 +17,7 @@ export type Theme = {
 
 
 export type ColorProps = { color?: ?Color }
-export type ModProps = { modifier?: ?Modifier }
+export type ModProps = { modifier?: ?Modifier|Modifier[] }
 export type RaisedProps = { raised?: ?number }
 export type ThemeProps = { theme: Theme }
 export type SizeProps = { w?: number, h?: number, }
