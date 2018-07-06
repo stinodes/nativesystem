@@ -22,7 +22,11 @@ const mergeSubThemeObjects = (...args: Array<?Styles>) =>
   )
 
 const subThemeWithModifier = (theme: Theme, subThemeName: string, modifier: ?Modifier|Modifier[]) => {
-  let modifiers = !Array.isArray(modifier) ? [modifier || 'default'] : modifier
+  let modifiers
+  if (!modifier) modifiers = ['default']
+  else if (!Array.isArray(modifier)) modifiers = ['default', modifier]
+  else modifiers = modifier
+  
   return mergeSubThemeObjects(
     ...modifiers
       .map(modifier => getSubTheme(theme, subThemeName, modifier))
