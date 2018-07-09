@@ -35,12 +35,21 @@ class ScreenComponent extends PureComponent<Props&{theme: Theme}> {
 
   render() {
     const {
-      theme, statusBarColor: _statusBarColor,  statusBarStyle: _statusBarStyle, statusBarTranslucent=false,
+      theme, statusBarColor: _statusBarColor,  statusBarStyle: _statusBarStyle, statusBarTranslucent = false,
       dismissKeyboardOnTap, ignoredTargets, children, ...props
     } = this.props
-    const statusBarColor = getColor(theme, _statusBarColor)
-    const statusBarStyle = typeof _statusBarStyle === 'string' ? _statusBarStyle : 'light-content'
-    const statusBar = <StatusBar backgroundColor={statusBarColor} barStyle={statusBarStyle} translucent={statusBarTranslucent}/>
+    let statusBar = null
+    if (_statusBarColor || _statusBarStyle || statusBarTranslucent) {
+      let statusBarColor = getColor(theme, _statusBarColor)
+      statusBar = <StatusBar
+        backgroundColor={statusBarColor}
+        barStyle={_statusBarStyle}
+        translucent={statusBarTranslucent}/>
+    }
+    
+    // const statusBarColor = getColor(theme, _statusBarColor)
+    // const statusBarStyle = typeof _statusBarStyle === 'string' ? _statusBarStyle : 'light-content'
+    // const statusBar = <StatusBar backgroundColor={statusBarColor} barStyle={statusBarStyle} translucent={statusBarTranslucent}/>
 
     if (dismissKeyboardOnTap)
       return (
