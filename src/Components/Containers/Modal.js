@@ -3,11 +3,9 @@ import * as React from 'react'
 
 import {Modal as RNModal, TouchableWithoutFeedback} from 'react-native'
 import glamorous from 'glamorous-native'
-import {Base} from '../Buttons'
-import {SystemView as View} from '../Theme/system'
-import {backgroundColor, subTheme} from '../Theme/system'
+import {backgroundColor, subTheme, SystemView as View, withFallback} from '../Theme/system'
 
-const Overlay = glamorous(Base)(
+const Overlay = glamorous(View)(
   {
     flex: 1,
     justifyContent: 'center'
@@ -31,15 +29,18 @@ const Modal = ({children, visible, onRequestClose, overlayColor}: Props) => {
       animationType="slide"
       visible={visible}
       onRequestClose={onRequestClose}>
-      <Overlay
-        color={overlayColor}
-        containerStyle={{flex: 1}}
+      <TouchableWithoutFeedback
         onPress={onRequestClose}>
+        <Overlay
+          color={overlayColor}
+          containerStyle={{flex: 1}}>
           {children}
-      </Overlay>
+        </Overlay>
+      </TouchableWithoutFeedback>
     </RNModal>
   )
 }
-Modal.StopPropagation = ({children}) => <TouchableWithoutFeedback onPress={e => e.stopPropagation()}>{children}</TouchableWithoutFeedback>
+Modal.StopPropagation = ({children}) => <TouchableWithoutFeedback
+  onPress={e => e.stopPropagation()}>{children}</TouchableWithoutFeedback>
 
 export {Modal}

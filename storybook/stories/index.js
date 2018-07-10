@@ -3,18 +3,21 @@ import React from 'react'
 import {addDecorator, storiesOf} from '@storybook/react-native'
 import {linkTo} from '@storybook/addon-links'
 import {withKnobs} from '@storybook/addon-knobs/react'
+import g from 'glamorous-native'
 
 import Welcome from './Welcome'
-import {StyledButtonColors, StyledButtonPlayground, StyledButtonSizes, WithSpinner} from './Buttons/StyledButton'
-import {TextColors, TextPlayground, TextSizes} from './Text'
 import {Cards, CardWithChildren} from './Containers/Card'
 import {Rows} from './Containers/Row'
 import {centerDecorator, createThemeDecorator, screenDecorator} from './utils'
-import {FocusBlurInput, InputInRows} from './Input/TextInput'
-import {StyledInputWithErrors} from './Input/StyledInput'
 import {FreeBodyModal, TitleActionsModal} from './Containers/CardModal'
 import {createSubTheme, createTheme} from '../../src/Components/Theme'
-import {KeyboardAnimated, KeyboardComposed, KeyboardProviderConsumer} from './Keyboard'
+import {backgroundColor, subTheme, SystemView} from '../../src/Components/Theme/system'
+
+const BGView = g(SystemView)({
+  flex: 1,
+  backgroundColor: 'black'
+}, {
+})
 
 addDecorator(centerDecorator, module)
 addDecorator(screenDecorator, module)
@@ -25,6 +28,10 @@ addDecorator(
       .withSubTheme(
         'card',
         createSubTheme({borderRadius: 10}).done()
+      )
+      .withSubTheme(
+        'overlay',
+        createSubTheme({backgroundColor: '#424242'}).done()
       )
       .done()
   ),
@@ -42,6 +49,9 @@ storiesOf('Containers/Row')
 storiesOf('Containers/CardModal')
   .add('Free body', () => <FreeBodyModal/>)
   .add('Included Components', () => <TitleActionsModal/>)
+  .add('test', () => (
+    <BGView f={1}/>
+  ))
 storiesOf('Text', module)
   .addDecorator(withKnobs)
   .addDecorator(centerDecorator)
