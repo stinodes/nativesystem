@@ -69,8 +69,8 @@ class KeyboardProvider extends React.Component<Props, State> {
     this.setState({keyboardHeight, keyboardActive})
   
   componentWillUnmount() {
-    KeyboardAPI.removeListener(this.hideEvent, this.onHideSub)
-    KeyboardAPI.removeListener(this.showEvent, this.onShowSub)
+    this.onHideSub.remove()
+    this.onShowSub.remove()
   }
   
   animate = (toValue: number) => {
