@@ -1,6 +1,6 @@
 // @flow
 import React, {PureComponent} from 'react'
-import {TextInput, findNodeHandle, TouchableWithoutFeedback} from 'react-native'
+import {TextInput, findNodeHandle, TouchableWithoutFeedback, Keyboard} from 'react-native'
 import glamorous from 'glamorous-native'
 // import ReactNativeTagHandles from 'ReactNativeTagHandles'
 
@@ -28,9 +28,10 @@ class DismissArea extends PureComponent<Props> {
   dismiss = (e: Object) => {
     const ignore = this.ignoredNodes.some(node => e.target === node)
     if (!ignore) {
-      TextInput.State.blurTextInput(
-        TextInput.State.currentlyFocusedField()
-      )
+      Keyboard.dismiss()
+      // TextInput.State.blurTextInput(
+      //   TextInput.State.currentlyFocusedField()
+      // )
     }
     return false
   }
