@@ -31,7 +31,7 @@ export const getDefaultTheme = (): Theme => {
       // weights: medium, bold
       default: {
         color: colors.black,
-        fontFamily: 'Montserrat-Medium',
+        // fontFamily: 'Montserrat-Medium',
         fontSize: 48 * ratio,
       },
       small: {
@@ -39,7 +39,7 @@ export const getDefaultTheme = (): Theme => {
       },
       large: {
         fontSize: 58 * ratio,
-        fontFamily: 'Montserrat-Bold',
+        // fontFamily: 'Montserrat-Bold',
       },
     },
     textInput: {
