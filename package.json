@@ -2,14 +2,20 @@
   "name": "nativesystem",
   "version": "0.0.16",
   "author": "stinodes",
-  "main": "src/index.js",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "flow": "flow",
     "test": "node node_modules/jest/bin/jest.js --watch",
     "test-ci": "jest",
-    "storybook": "storybook start -p 7007"
+    "storybook": "storybook start -p 7007",
+    "prepack": "yarn prepack:babel && yarn prepack:flow",
+    "prepack:babel": "babel src/ -d lib --ignore '**/*.test.js'",
+    "prepack:flow": "flow-copy-source src/ lib/"
   },
   "rnpm": {
     "assets": [
@@ -26,9 +32,11 @@
     "@storybook/addon-knobs": "^3.4.0-alpha.1",
     "@storybook/addon-links": "^3.4.0-alpha.1",
     "@storybook/react-native": "^3.4.0-alpha.1",
+    "babel-cli": "^6.26.0",
     "babel-jest": "22.4.3",
     "babel-preset-react-native": "4.0.0",
     "flow-bin": "0.75",
+    "flow-copy-source": "^2.0.1",
     "jest": "^23.4.0",
     "react": "16.4.1",
     "react-dom": "^16.3.2",
