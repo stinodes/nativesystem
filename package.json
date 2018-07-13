@@ -1,6 +1,6 @@
 {
   "name": "nativesystem",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "author": "stinodes",
   "main": "lib/index.js",
   "files": [
