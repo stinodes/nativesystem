@@ -2,6 +2,7 @@
 import {createSubTheme, createTheme} from './theme'
 import {getDefaultTheme} from './defaultTheme'
 import {ThemeError} from './ThemeError'
+import {getDeep} from 'fnional'
 
 expect.extend({
   toHaveDeepValue<V: {}>(received: {}, keys: string, val: any) {
@@ -40,29 +41,40 @@ describe('SubThemeCreator', () => {
   test('Adds default styling', () => {
     const styles = {backgroundColor: 'black'}
     expect(
-      createSubTheme()
-        .withDefault(styles)
-        .done()
-    ).toHaveDeepValue('default', styles)
+      getDeep(
+        createSubTheme()
+          .withDefault(styles)
+          .done(),
+        ['default'],
+      )
+    ).toEqual(styles)
   })
   test('Adds modifiers', () => {
     const styles = {backgroundColor: 'red'}
     expect(
-      createSubTheme()
-        .withModifier('red', styles)
-        .done()
-    ).toHaveDeepValue('red', styles)
+      getDeep(
+        createSubTheme()
+          .withModifier('red', styles)
+          .done(),
+        ['red'],
+      )
+    ).toEqual(styles)
   })
   test('Removes modifiers', () => {
     const styles = {backgroundColor: 'red'}
     const builder = createSubTheme()
       .withModifier('red', styles)
-    expect(builder.done()).toHaveDeepValue('red', styles)
     expect(
-      builder
-        .removeModifier('red')
-        .done()
-    ).toHaveDeepValue('red', undefined)
+      getDeep(builder.done(), ['red'])
+    ).toEqual(styles)
+    expect(
+      getDeep(
+        builder
+          .removeModifier('red')
+          .done(),
+        ['red'],
+      )
+    ).toEqual(undefined)
   })
 })
 
@@ -107,19 +119,25 @@ describe('ThemeCreator', () => {
     const colorName = 'black'
     const colorVal = '#000000'
     expect(
-      createTheme()
-        .addColor(colorName, colorVal)
-        .done()
-    ).toHaveDeepValue('colors.black', '#000000')
+      getDeep(
+        createTheme()
+          .addColor(colorName, colorVal)
+          .done(),
+        ['colors', 'black'],
+      )
+    ).toEqual('#000000')
   })
   test('removes colors', () => {
     expect(
-      createTheme(
-        {colors: {black: '#000000'}, spacing: []}
+      getDeep(
+        createTheme(
+          {colors: {black: '#000000'}, spacing: []}
+        )
+          .removeColor('black')
+          .done(),
+        ['colors', 'black'],
       )
-        .removeColor('black')
-        .done()
-    ).toHaveDeepValue('colors.black', undefined)
+    ).toEqual(undefined)
   })
   test('replaces colors', () => {
     const initialColors = {
@@ -130,23 +148,32 @@ describe('ThemeCreator', () => {
       color2: '#124124',
     }
     expect(
-      createTheme()
-        .withColors(colors)
-        .done()
-    ).toHaveDeepValue('colors', colors)
+      getDeep(
+        createTheme()
+          .withColors(colors)
+          .done(),
+        ['colors'],
+      )
+    ).toEqual(colors)
     expect(
-      createTheme({colors: initialColors})
-        .withColors(colors)
-        .done()
-    ).toHaveDeepValue('colors', colors)
+      getDeep(
+        createTheme({colors: initialColors})
+          .withColors(colors)
+          .done(),
+        ['colors'],
+      )
+    ).toEqual(colors)
   })
   test('adds spacings', () => {
     const spacings = [0, 4, 8, 10]
     expect(
-      createTheme()
-        .withSpacing(spacings)
-        .done()
-    ).toHaveDeepValue('spacing', spacings)
+      getDeep(
+        createTheme()
+          .withSpacing(spacings)
+          .done(),
+        ['spacing'],
+      )
+    ).toEqual(spacings)
   })
   test('adds sub-themes', () => {
     const subTheme = createSubTheme()
@@ -154,10 +181,13 @@ describe('ThemeCreator', () => {
       .withModifier('red', {backgroundColor: 'red'})
       .done()
     expect(
-      createTheme()
-        .withSubTheme('background', subTheme)
-        .done()
-    ).toHaveDeepValue('background', subTheme)
+      getDeep(
+        createTheme()
+          .withSubTheme('background', subTheme)
+          .done(),
+        ['background'],
+      )
+    ).toEqual(subTheme)
   })
   test('removes sub-themes', () => {
     const subTheme = createSubTheme()
@@ -166,12 +196,20 @@ describe('ThemeCreator', () => {
       .done()
     const theme = createTheme()
       .withSubTheme('background', subTheme)
-    expect(theme.done()).toHaveDeepValue('background', subTheme)
     expect(
-      theme
-        .removeSubTheme('background')
-        .done()
-    ).toHaveDeepValue('background', undefined)
+      getDeep(
+        theme.done(),
+        ['background'],
+      )
+    ).toEqual(subTheme)
+    expect(
+      getDeep(
+        theme
+          .removeSubTheme('background')
+          .done(),
+        ['background'],
+      )
+    ).toEqual(undefined)
   })
   test('adds sub-themes', () => {
     const subThemeName = 'button'
@@ -182,25 +220,34 @@ describe('ThemeCreator', () => {
       }
     }
     expect(
-      createTheme()
-        .withSubTheme(subThemeName, subTheme)
-        .done()
-    ).toHaveDeepValue(subThemeName, subTheme)
+      getDeep(
+        createTheme()
+          .withSubTheme(subThemeName, subTheme)
+          .done(),
+        [subThemeName],
+      )
+    ).toEqual(subTheme)
   })
   test('replaces spacing', () => {
     const spacing = [2, 4, 6]
     expect(
-      createTheme()
-        .withSpacing(spacing)
-        .done()
-    ).toHaveDeepValue('spacing', spacing)
+      getDeep(
+        createTheme()
+          .withSpacing(spacing)
+          .done(),
+        ['spacing'],
+      )
+    ).toEqual(spacing)
   })
   test('replaces ratio', () => {
     const ratio = 0.12
     expect(
-      createTheme()
-        .withRatio(ratio)
-        .done()
-    ).toHaveDeepValue('ratio', ratio)
+      getDeep(
+        createTheme()
+          .withRatio(ratio)
+          .done(),
+        ['ratio'],
+      )
+    ).toEqual(ratio)
   })
 })

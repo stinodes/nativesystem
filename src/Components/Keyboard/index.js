@@ -2,9 +2,6 @@
 import * as React from 'react'
 import {Animated, Keyboard as KeyboardAPI, Platform} from 'react-native'
 
-// $FlowFixMe Todo
-const {Consumer, Provider} = React.createContext()
-
 type KeyboardEvent = {
   endCoordinates: {
     height: number,
@@ -24,6 +21,13 @@ type Context = {
   ...State,
   dismiss: () => void,
 }
+
+const {Consumer, Provider} = React.createContext<Context>({
+  keyboardHeight: 0,
+  keyboardActive: false,
+  keyboardAnimation: new Animated.Value(0),
+  dismiss: KeyboardAPI.dismiss
+})
 
 class KeyboardProvider extends React.Component<Props, State> {
   state = {
@@ -93,7 +97,7 @@ class KeyboardProvider extends React.Component<Props, State> {
 
 const KeyboardConsumer = Consumer
 
-const Keyboard = ({children, ...props}: { ...Props, children: (Context) => Node | React.Element<*> }) => (
+const Keyboard = ({children, ...props}: { ...Props, children: (Context) => React.Node | React.Element<*> }) => (
   <KeyboardProvider {...props}>
     <KeyboardConsumer children={children}/>
   </KeyboardProvider>

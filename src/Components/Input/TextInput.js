@@ -1,14 +1,29 @@
 // @flow
 import * as React from 'react'
 import glamorous, {withTheme} from 'glamorous-native'
+import type {TextInput as RNTextInputType} from 'react-native'
 import {TextInput as RNTextInput} from 'react-native'
 
-import {getColor, subTheme} from '../Theme'
-
 import type {ColorProps, ModProps, ThemeProps} from '../Theme'
+import {getColor, subTheme} from '../Theme'
 import {textColor, withFallback} from '../Theme/system'
 
-type RNTextInputType = typeof RNTextInput
+type KeyboardType = | 'default'
+  | 'email-address'
+  | 'numeric'
+  | 'phone-pad'
+  | 'number-pad'
+  | 'decimal-pad'
+  // iOS-only
+  | 'ascii-capable'
+  | 'numbers-and-punctuation'
+  | 'url'
+  | 'name-phone-pad'
+  | 'twitter'
+  | 'web-search'
+  // Android-only
+  | 'visible-password'
+
 type EventHandlers = {
   onBlur?: () => any,
   onFocus?: () => any,
@@ -22,7 +37,7 @@ export type InputProps = {
   underlineColorAndroid?: string,
   
   secureTextEntry?: boolean,
-  keyboardType?: string,
+  keyboardType?: KeyboardType,
   
   inputRef?: (?RNTextInput) => any,
 }
@@ -38,7 +53,7 @@ type Props =
 //   ...InputProps,
 // }
 
-class WrappedRNTextInput extends React.PureComponent<Props&ThemeProps> {
+class WrappedRNTextInput extends React.PureComponent<Props & ThemeProps> {
   render() {
     const {theme, underlineColorAndroid, placeholderTextColor, inputRef, ...props} = this.props
     return (

@@ -17,7 +17,7 @@
     ]
   },
   "dependencies": {
-    "fnional": "^0.0.2",
+    "fnional": "^0.0.5",
     "glamorous-native": "^1.4.0",
     "polished": "^1.9.2"
   },
@@ -28,17 +28,17 @@
     "@storybook/react-native": "^3.4.0-alpha.1",
     "babel-jest": "22.4.3",
     "babel-preset-react-native": "4.0.0",
-    "flow-bin": "0.67",
-    "jest": "^23.1.0",
-    "react": "16.3.1",
+    "flow-bin": "0.75",
+    "jest": "^23.4.0",
+    "react": "16.4.1",
     "react-dom": "^16.3.2",
-    "react-native": "0.55.3",
+    "react-native": "0.56.0",
     "react-native-vector-icons": "^4.6.0",
     "react-test-renderer": "16.3.1"
   },
   "peerDependencies": {
     "react": "^16.3.0",
-    "react-native": "^0.55.0",
+    "react-native": "^0.56.0",
     "react-native-vector-icons": "4.x"
   },
   "jest": {
