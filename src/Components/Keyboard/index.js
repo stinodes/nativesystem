@@ -22,7 +22,7 @@ type Context = {
   dismiss: () => void,
 }
 
-const {Consumer, Provider} = React.createContext<Context>({
+const {Consumer, Provider} = React.createContext({
   keyboardHeight: 0,
   keyboardActive: false,
   keyboardAnimation: new Animated.Value(0),
