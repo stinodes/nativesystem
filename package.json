@@ -15,7 +15,8 @@
     "storybook": "storybook start -p 7007",
     "prepack": "yarn prepack:babel && yarn prepack:flow",
     "prepack:babel": "babel src/ -d lib --ignore '**/*.test.js'",
-    "prepack:flow": "flow-copy-source src/ lib/"
+    "prepack:flow": "flow-copy-source src/ lib/",
+    "prettier": "prettier --jsx-bracket-same-line true --single-quote --trailing-comma all --write \"./src/**\""
   },
   "rnpm": {
     "assets": [
@@ -38,6 +39,7 @@
     "flow-bin": "0.75",
     "flow-copy-source": "^2.0.1",
     "jest": "^23.4.0",
+    "prettier": "^1.14.2",
     "react": "16.4.1",
     "react-dom": "^16.3.2",
     "react-native": "0.56.0",

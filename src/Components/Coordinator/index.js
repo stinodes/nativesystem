@@ -4,7 +4,7 @@ import { Animated } from 'react-native';
 import g from 'glamorous-native';
 
 import { absolute } from '../Containers/Absolute';
-import { View } from '../Theme'
+import { View } from '../Theme';
 
 const MovingView = g(Animated.View)(absolute);
 const { Provider, Consumer } =
@@ -12,17 +12,20 @@ const { Provider, Consumer } =
   React.createContext();
 const Container = g(View)({ position: 'relative' });
 
-type Extrapolation = 'identity'|'clamp'|'extend'
-type NodeWithInterpolate = Animated.Node&{
+type Extrapolation = 'identity' | 'clamp' | 'extend';
+type NodeWithInterpolate = Animated.Node & {
   interpolate: ({
     inputRange: number[],
     outputRange: number[],
     extrapolate?: Extrapolation,
     extrapolateLeft?: Extrapolation,
     extrapolateRight?: Extrapolation,
-  }) => Animated.Interpolation
-}
-type AnimatedValue = Animated.Value|Animated.Interpolation|NodeWithInterpolate
+  }) => Animated.Interpolation,
+};
+type AnimatedValue =
+  | Animated.Value
+  | Animated.Interpolation
+  | NodeWithInterpolate;
 type CoordinatorProps = {
   layoutProps?: {},
   animation: AnimatedValue,

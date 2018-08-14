@@ -1,31 +1,31 @@
 // @flow
-import type {Colors, Theme} from './types'
+import type { Colors, Theme } from './types';
 
 export const getDefaultColors = (): Colors => ({
   white: '#fcfcff',
-  
+
   ufoGreen: '#1ece62',
   frenchSky: '#7692ff',
   gunMetal: '#2d3047',
-  
+
   black: '#000000',
   raisinBlack: '#212121',
   arsenic: '#424242',
   sonicSilver: '#757575',
-  
+
   error: '#ff8090',
-  
+
   fallback: '#2d3047',
-})
+});
 export const getDefaultTheme = (): Theme => {
-  const baseWidth = 375
-  const desWidth = 1080
-  const ratio = baseWidth / desWidth
-  const colors = getDefaultColors()
+  const baseWidth = 375;
+  const desWidth = 1080;
+  const ratio = baseWidth / desWidth;
+  const colors = getDefaultColors();
   return {
     colors,
     spacing: [0, 8, 16, 32, 64],
-    
+
     text: {
       // sizes: 48, 58
       // weights: medium, bold
@@ -51,7 +51,7 @@ export const getDefaultTheme = (): Theme => {
       large: {
         fontSize: 58 * ratio,
         // lineHeight: 60 * ratio,
-      }
+      },
     },
     button: {
       default: {
@@ -59,7 +59,7 @@ export const getDefaultTheme = (): Theme => {
         height: 160 * ratio,
         paddingHorizontal: 80 * ratio,
         borderRadius: 80 * ratio,
-      }
-    }
-  }
-}
+      },
+    },
+  };
+};

@@ -1,8 +1,8 @@
 // @flow
 import g from 'glamorous-native';
-import {getSpacing, View} from '../Theme'
+import { getSpacing, View } from '../Theme';
 
-import type {Theme} from '../Theme'
+import type { Theme } from '../Theme';
 
 const absolute = ({
   theme,

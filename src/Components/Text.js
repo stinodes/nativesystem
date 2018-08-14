@@ -1,11 +1,9 @@
 // @flow
-import React from 'react'
-import glamorous from 'glamorous-native'
+import React from 'react';
+import glamorous from 'glamorous-native';
 
-import {text} from './Theme'
+import { text } from './Theme';
 
-const Text = glamorous.text(
-  text,
-)
+const Text = glamorous.text(text);
 
-export { Text }
+export { Text };
