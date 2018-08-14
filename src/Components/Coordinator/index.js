@@ -12,13 +12,23 @@ const { Provider, Consumer } =
   React.createContext();
 const Container = g(View)({ position: 'relative' });
 
+type Extrapolation = 'identity'|'clamp'|'extend'
+type NodeWithInterpolate = Animated.Node&{
+  interpolate: ({
+    inputRange: number[],
+    outputRange: number[],
+    extrapolate?: Extrapolation,
+    extrapolateLeft?: Extrapolation,
+    extrapolateRight?: Extrapolation,
+  }) => Animated.Interpolation
+}
+type AnimatedValue = Animated.Value|Animated.Interpolation|NodeWithInterpolate
 type CoordinatorProps = {
   layoutProps?: {},
-  animation: Animated.Value,
+  animation: AnimatedValue,
   inputRange: number[],
   children: React.Node,
 };
-type Extrapolation = 'identity'|'clamp'|'extend'
 type ElementProps = {
   relative?: boolean,
   positioning?: {
