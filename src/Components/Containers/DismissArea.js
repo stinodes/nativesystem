@@ -23,12 +23,19 @@ class DismissArea extends PureComponent<Props> {
   ignoredNodes: Node[] = [];
 
   componentDidMount() {
+    this.generateNodes();
+  }
+  componentDidUpdate() {
+    this.generateNodes();
+  }
+
+  generateNodes = () => {
     if (this.props.ignoredTargets) {
       this.ignoredNodes = this.props
         .ignoredTargets()
         .map(ref => findNodeHandle(ref));
     }
-  }
+  };
 
   dismiss = (e: Object) => {
     const ignore = this.ignoredNodes.some(node => e.target === node);
