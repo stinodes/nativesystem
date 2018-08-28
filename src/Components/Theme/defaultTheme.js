@@ -53,6 +53,11 @@ export const getDefaultTheme = (): Theme => {
         // lineHeight: 60 * ratio,
       },
     },
+    overlay: {
+      default: {
+        backgroundColor: colors.arsenic,
+      },
+    },
     button: {
       default: {
         backgroundColor: colors.ufoGreen,
