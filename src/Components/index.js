@@ -8,3 +8,4 @@ export * from './WithThemeFAC';
 export * from './Theme';
 export * from './Keyboard';
 export * from './Coordinator';
+export * from './Separator';
