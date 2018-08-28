@@ -224,4 +224,4 @@ assign a default color for when there is none passed.
     colorOrBlack({color: undefined}) // {backgroundColor: 'black'}
     
 When no color is passed to the `withFallback`-function, it will use the `fallback` color 
-specified in hour theme.
+specified in your theme.
