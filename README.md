@@ -33,13 +33,13 @@ Aside from the theming structure, the library provides a set of utilities to
 easily extract certain colors or sub-themes from the root-theme, including easy
 helpers to provide dynamic styling to `glamorous`-type components (this would also 
 work with `styled-components` or `emotion`).
-  * [**Theming**](theme-docs)
+  * [**Theming**][theme-docs]
 
 Additionally, there are components included which I personally find 
 important when creating my React Native apps (they are not compatible for web, sadly). 
 Some might be more useful to you and your app than others.   
 These include the following:   
-  * [**Keyboard Handling**](keyboard-docs)  
+  * [**Keyboard Handling**][keyboard-docs]  
     A component sent using context to easily animate components across a component-tree
     to handle the keyboard gracefully.
   * **View/SystemView**: an easily styled View-alternative
@@ -57,7 +57,7 @@ These include the following:
     * **CardModal**: A modal styled like a card.
     * **DismissArea**: A component handling touches outside of `TextInput`s to dismiss
     the keyboard.
-  *  [**Coordinator**](coordinator-docs)  
+  *  [**Coordinator**][coordinator-docs]  
   A powerful helper-component to easily coordinate more complex 
   animations, so you don't have to spend ages writing interpolations and positioning.
   * **Input**: A wrapper around React Native's `TextInput` & a helper to more easily wire 
