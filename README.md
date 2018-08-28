@@ -33,6 +33,7 @@ Aside from the theming structure, the library provides a set of utilities to
 easily extract certain colors or sub-themes from the root-theme, including easy
 helpers to provide dynamic styling to `glamorous`-type components (this would also 
 work with `styled-components` or `emotion`).
+  * **Theming**
 
 Additionally, there are components included which I personally find 
 important when creating my React Native apps (they are not compatible for web, sadly). 
@@ -41,6 +42,7 @@ These include the following:
   * **Keyboard Handling**  
     A component sent using context to easily animate components across a component-tree
     to handle the keyboard gracefully.
+  * **View/SystemView**: an easily styled View-alternative
   * **Containers**  
     A range of containers:
     * **Screen**: easy wrapper to configure properties related to your app's screen, 
@@ -69,3 +71,5 @@ These include the following:
     * **WithThemeFAC**: I like FACs. So I made this. Allows you to get values out of 
     your theme without using a higher order component per se.
     * **Spinner**: For when your app has not loaded data yet.
+    
+

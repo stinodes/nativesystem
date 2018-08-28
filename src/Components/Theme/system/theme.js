@@ -27,8 +27,9 @@ export const backgroundColor = ({ theme, color }: ThemeProps & ColorProps) => {
 
 export const withFallback = (
   styleFn: (ThemeProps & ColorProps) => { [string]: ?Color },
+  fallbackColor?: Color = 'fallback',
 ) => ({ theme, color }: ThemeProps & ColorProps) =>
-  styleFn({ theme, color: color || 'fallback' });
+  styleFn({ theme, color: color || fallbackColor });
 
 export const raised = ({ theme, raised }: ThemeProps & RaisedProps) => ({
   ...elevationStyleFromRaised(raised),
