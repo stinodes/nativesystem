@@ -61,7 +61,7 @@ Pass an object with the same keys to the `end`-property.
 Now when you start your animation by animating from 0 to 1, you should see your objects 
 move around.
 
-[Here you can see a quick example.](snack) 
+[Here you can see a quick example.][snack] 
 
 [snack]: https://snack.expo.io/SkSUoTzPm
 
