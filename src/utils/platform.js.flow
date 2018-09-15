@@ -1,0 +1,5 @@
+// @flow
+declare export var isAndroid: () => boolean
+declare export var isHigherThanLolipop: () => boolean
+
+declare export var isIOS: () => boolean
