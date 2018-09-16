@@ -8,10 +8,8 @@ import {
 } from 'react-native';
 import { withTheme } from 'glamorous-native';
 
-import { Base as OpacityButtonBase } from './ButtonBase';
 import { getColor } from '../Theme';
 import type { Theme } from '../Theme';
-import { isHigherThanLolipop } from '../../utils/platform';
 
 type Ripple = {
   color: string,
