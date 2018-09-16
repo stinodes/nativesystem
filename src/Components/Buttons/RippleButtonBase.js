@@ -1,12 +1,17 @@
 // @flow
 import React from 'react';
-import { Touchable, TouchableNativeFeedback, TouchableOpacity, View } from 'react-native';
+import {
+  Touchable,
+  TouchableNativeFeedback,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { withTheme } from 'glamorous-native';
 
-import { Base as OpacityButtonBase } from './ButtonBase'
+import { Base as OpacityButtonBase } from './ButtonBase';
 import { getColor } from '../Theme';
 import type { Theme } from '../Theme';
-import {isHigherThanLolipop} from '../../utils/platform'
+import { isHigherThanLolipop } from '../../utils/platform';
 
 type Ripple = {
   color: string,
@@ -49,11 +54,12 @@ const parseRipple = (ripple: Ripple, theme: Theme) =>
   );
 
 const RippleButtonBase = withTheme(UnthemedRippleButtonBase);
-RippleButtonBase .SelectableBackground = TouchableNativeFeedback.SelectableBackground;
-RippleButtonBase .SelectableBackgroundBorderless =
+RippleButtonBase.SelectableBackground =
+  TouchableNativeFeedback.SelectableBackground;
+RippleButtonBase.SelectableBackgroundBorderless =
   TouchableNativeFeedback.SelectableBackgroundBorderless;
 RippleButtonBase.Ripple = ripple;
 RippleButtonBase.delayHandler = (handler: any => any) => (...args: any) =>
   setTimeout(() => handler(...args), 50);
 
-export { RippleButtonBase  };
+export { RippleButtonBase };
