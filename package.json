@@ -56,10 +56,14 @@
   },
   "jest": {
     "preset": "react-native",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
     "transformIgnorePatterns": [
       "node_modules/?!(fnional)"
     ],
     "testPathIgnorePatterns": [
+      ".*/node_modules/.*",
       "./__tests__/.*.mocks.js"
     ]
   }
