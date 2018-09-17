@@ -29,11 +29,12 @@
     "polished": "^1.9.2"
   },
   "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.1",
     "@storybook/addon-actions": "^3.4.0-alpha.1",
     "@storybook/addon-knobs": "^3.4.0-alpha.1",
     "@storybook/addon-links": "^3.4.0-alpha.1",
     "@storybook/react-native": "^3.4.0-alpha.1",
-    "babel-cli": "^6.26.0",
     "babel-jest": "22.4.3",
     "babel-preset-react-native": "4.0.0",
     "flow-bin": "0.78",
@@ -45,8 +46,7 @@
     "react": "16.5.0",
     "react-dom": "^16.3.2",
     "react-native": "0.57.0",
-    "react-native-vector-icons": "^4.6.0",
-    "react-test-renderer": "16.3.1"
+    "react-native-vector-icons": "^4.6.0"
   },
   "peerDependencies": {
     "react": "16.5.0",
