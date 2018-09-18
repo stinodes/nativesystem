@@ -24,6 +24,7 @@
     ]
   },
   "dependencies": {
+    "create-react-context": "^0.2.3",
     "fnional": "^0.0.5",
     "glamorous-native": "^1.4.0",
     "polished": "^1.9.2"

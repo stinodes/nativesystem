@@ -1,6 +1,7 @@
 // @flow
 import * as React from 'react';
 import { Animated, Keyboard as KeyboardAPI, Platform } from 'react-native';
+import { createContext } from '../../utils/context';
 
 type KeyboardEvent = {
   endCoordinates: {
@@ -10,7 +11,7 @@ type KeyboardEvent = {
 type Props = {
   onAnimationComplete?: () => any,
   forceAndroid?: boolean,
-  children: Node | React.Element<*>,
+  children: React.Node | React.Element<*>,
 };
 type State = {
   keyboardHeight: number,
@@ -22,7 +23,7 @@ type Context = {
   dismiss: () => void,
 };
 
-const { Consumer, Provider } = React.createContext({
+const { Consumer, Provider } = createContext({
   keyboardHeight: 0,
   keyboardActive: false,
   keyboardAnimation: new Animated.Value(0),

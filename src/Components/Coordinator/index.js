@@ -5,11 +5,10 @@ import g from 'glamorous-native';
 
 import { absolute } from '../Containers/Absolute';
 import { View } from '../Theme';
+import { createContext } from '../../utils/context';
 
 const MovingView = g(Animated.View)(absolute);
-const { Provider, Consumer } =
-  // $FlowFixMe
-  React.createContext();
+const { Provider, Consumer } = createContext({});
 const Container = g(View)({ position: 'relative' });
 
 type Extrapolation = 'identity' | 'clamp' | 'extend';
