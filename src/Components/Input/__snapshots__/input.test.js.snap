@@ -108,6 +108,21 @@ exports[`Formik Helpers mapInputProps defaults work with react-native's TextInpu
 />
 `;
 
+exports[`Formik Helpers mapInputProps maps the passed Switch's props to a Formik-compatible shape 1`] = `
+<RCTSwitch
+  onChange={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "height": 31,
+      "width": 51,
+    }
+  }
+  value={true}
+/>
+`;
+
 exports[`Formik Helpers mapInputProps maps the passed TextInput's props to a Formik-compatible shape 1`] = `
 <TextInput
   allowFontScaling={true}

@@ -59,7 +59,7 @@ describe('Formik Helpers', () => {
       )
       expect(tree.toJSON()).toMatchSnapshot()
     })
-    test("maps the passed TextInput's props to a Formik-compatible shape", () => {
+    test("maps the passed Switch's props to a Formik-compatible shape", () => {
       const MappedTextInput = normalizeInputProps(
         {
           onChange: 'onValueChange',
