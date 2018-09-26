@@ -1,5 +1,6 @@
 // @flow
-export * from './FormikInputWrapper';
-export * from './TextInput';
-export * from './InputError';
-export * from './StyledInput';
+export * from './FormikInputWrapper'
+export * from './FormikFieldWrapper'
+export * from './TextInput'
+export * from './InputError'
+export * from './StyledInput'

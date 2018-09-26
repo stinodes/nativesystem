@@ -1,5 +1,5 @@
 // @flow
-import type { Colors, Theme } from './types';
+import type { Colors, Theme } from './types'
 
 export const getDefaultColors = (): Colors => ({
   white: '#fcfcff',
@@ -16,12 +16,12 @@ export const getDefaultColors = (): Colors => ({
   error: '#ff8090',
 
   fallback: '#2d3047',
-});
+})
 export const getDefaultTheme = (): Theme => {
-  const baseWidth = 375;
-  const desWidth = 1080;
-  const ratio = baseWidth / desWidth;
-  const colors = getDefaultColors();
+  const baseWidth = 375
+  const desWidth = 1080
+  const ratio = baseWidth / desWidth
+  const colors = getDefaultColors()
   return {
     colors,
     spacing: [0, 8, 16, 32, 64],
@@ -66,5 +66,5 @@ export const getDefaultTheme = (): Theme => {
         borderRadius: 80 * ratio,
       },
     },
-  };
-};
+  }
+}

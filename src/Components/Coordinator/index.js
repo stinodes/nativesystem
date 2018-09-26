@@ -1,17 +1,17 @@
 // @flow
-import * as React from 'react';
-import { Animated } from 'react-native';
-import g from 'glamorous-native';
+import * as React from 'react'
+import { Animated } from 'react-native'
+import g from 'glamorous-native'
 
-import { absolute } from '../Containers/Absolute';
-import { View } from '../Theme';
-import { createContext } from '../../utils/context';
+import { absolute } from '../Containers/Absolute'
+import { View } from '../Theme'
+import { createContext } from '../../utils/context'
 
-const MovingView = g(Animated.View)(absolute);
-const { Provider, Consumer } = createContext({});
-const Container = g(View)({ position: 'relative' });
+const MovingView = g(Animated.View)(absolute)
+const { Provider, Consumer } = createContext({})
+const Container = g(View)({ position: 'relative' })
 
-type Extrapolation = 'identity' | 'clamp' | 'extend';
+type Extrapolation = 'identity' | 'clamp' | 'extend'
 type NodeWithInterpolate = Animated.Node & {
   interpolate: ({
     inputRange: number[],
@@ -20,17 +20,17 @@ type NodeWithInterpolate = Animated.Node & {
     extrapolateLeft?: Extrapolation,
     extrapolateRight?: Extrapolation,
   }) => Animated.Interpolation,
-};
+}
 type AnimatedValue =
   | Animated.Value
   | Animated.Interpolation
-  | NodeWithInterpolate;
+  | NodeWithInterpolate
 type CoordinatorProps = {
   layoutProps?: {},
   animation: AnimatedValue,
   inputRange: number[],
   children: React.Node,
-};
+}
 type ElementProps = {
   relative?: boolean,
   positioning?: {
@@ -45,14 +45,14 @@ type ElementProps = {
   extrapolate?: Extrapolation,
   extrapolateRight?: Extrapolation,
   extrapolateLeft?: Extrapolation,
-};
+}
 type ElementConfig = {
   scale?: number,
   x?: number,
   y?: number,
   rot?: number,
   opacity?: number,
-};
+}
 
 class Element extends React.Component<ElementProps> {
   transforms = {
@@ -60,7 +60,7 @@ class Element extends React.Component<ElementProps> {
     x: 'translateX',
     y: 'translateY',
     rot: 'rotation',
-  };
+  }
 
   render() {
     const {
@@ -77,7 +77,7 @@ class Element extends React.Component<ElementProps> {
       extrapolate,
       extrapolateLeft,
       extrapolateRight,
-    } = this.props;
+    } = this.props
     return (
       <Consumer>
         {({ animation, inputRange }) => (
@@ -91,8 +91,8 @@ class Element extends React.Component<ElementProps> {
               {
                 transform: Object.keys(this.transforms)
                   .map(key => {
-                    if (typeof start[key] !== 'number') return null;
-                    if (typeof end[key] !== 'number') return null;
+                    if (typeof start[key] !== 'number') return null
+                    if (typeof end[key] !== 'number') return null
                     return {
                       [this.transforms[key]]: animation.interpolate({
                         inputRange: inputRange,
@@ -101,7 +101,7 @@ class Element extends React.Component<ElementProps> {
                         extrapolateLeft,
                         extrapolateRight,
                       }),
-                    };
+                    }
                   })
                   .filter(config => config),
               },
@@ -115,20 +115,21 @@ class Element extends React.Component<ElementProps> {
                     extrapolateRight,
                   }),
                 },
-            ]}>
+            ]}
+          >
             {children}
           </MovingView>
         )}
       </Consumer>
-    );
+    )
   }
 }
 
 class Coordinator extends React.Component<CoordinatorProps> {
-  static Element = Element;
+  static Element = Element
 
   render() {
-    const { layoutProps, inputRange, children, ...props } = this.props;
+    const { layoutProps, inputRange, children, ...props } = this.props
 
     return (
       <Provider value={{ animation: this.props.animation, inputRange }}>
@@ -136,8 +137,8 @@ class Coordinator extends React.Component<CoordinatorProps> {
           {children}
         </Container>
       </Provider>
-    );
+    )
   }
 }
 
-export { Coordinator, Element };
+export { Coordinator, Element }

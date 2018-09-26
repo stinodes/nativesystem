@@ -1,0 +1,173 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Formik Helpers FormikFieldWrapper works well with formik! 1`] = `
+<TextInput
+  allowFontScaling={true}
+  form={
+    Object {
+      "dirty": false,
+      "errors": Object {},
+      "handleBlur": [Function],
+      "handleChange": [Function],
+      "handleReset": [Function],
+      "handleSubmit": [Function],
+      "initialValues": Object {
+        "test": "test",
+      },
+      "isSubmitting": false,
+      "isValid": false,
+      "isValidating": false,
+      "registerField": [Function],
+      "resetForm": [Function],
+      "setError": [Function],
+      "setErrors": [Function],
+      "setFieldError": [Function],
+      "setFieldTouched": [Function],
+      "setFieldValue": [Function],
+      "setFormikState": [Function],
+      "setStatus": [Function],
+      "setSubmitting": [Function],
+      "setTouched": [Function],
+      "setValues": [Function],
+      "submitCount": 0,
+      "submitForm": [Function],
+      "touched": Object {},
+      "unregisterField": [Function],
+      "validateField": [Function],
+      "validateForm": [Function],
+      "validateOnBlur": true,
+      "validateOnChange": true,
+      "values": Object {
+        "test": "test",
+      },
+    }
+  }
+  name="test"
+  onBlur={[Function]}
+  onChangeText={[Function]}
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontSize": 16.666666666666664,
+      },
+      Object {
+        "color": "#2d3047",
+      },
+    ]
+  }
+  underlineColorAndroid="transparent"
+  value="test"
+/>
+`;
+
+exports[`Formik Helpers FormikFieldWrapper wraps a compatible component to take a field and form prop 1`] = `
+<TextInput
+  allowFontScaling={true}
+  form={Object {}}
+  name="textfield"
+  onBlur={[Function]}
+  onChangeText={[Function]}
+  onFocus={[Function]}
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontSize": 16.666666666666664,
+      },
+      Object {
+        "color": "#2d3047",
+      },
+    ]
+  }
+  underlineColorAndroid="transparent"
+  value=""
+/>
+`;
+
+exports[`Formik Helpers mapInputProps defaults work with react-native's TextInput 1`] = `
+<TextInput
+  allowFontScaling={true}
+  name="test input"
+  onBlur={[Function]}
+  onChangeText={[Function]}
+  onFocus={[Function]}
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontSize": 16.666666666666664,
+      },
+      Object {
+        "color": "#2d3047",
+      },
+    ]
+  }
+  underlineColorAndroid="transparent"
+  value=""
+/>
+`;
+
+exports[`Formik Helpers mapInputProps maps the passed TextInput's props to a Formik-compatible shape 1`] = `
+<TextInput
+  allowFontScaling={true}
+  name="test input"
+  onBlur={[Function]}
+  onChangeText={[Function]}
+  onFocus={[Function]}
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontSize": 16.666666666666664,
+      },
+      Object {
+        "color": "#2d3047",
+      },
+    ]
+  }
+  underlineColorAndroid="transparent"
+  value=""
+/>
+`;
+
+exports[`Formik Helpers mapInputProps maps the passed TextInput's props to a Formik-compatible shape 2`] = `
+<RCTSwitch
+  name="test input"
+  onBlur={[Function]}
+  onChange={[Function]}
+  onFocus={[Function]}
+  onResponderTerminationRequest={[Function]}
+  onStartShouldSetResponder={[Function]}
+  style={
+    Object {
+      "height": 31,
+      "width": 51,
+    }
+  }
+  value={true}
+/>
+`;
+
+exports[`Formik Helpers mapInputProps maps the passed component's props to a Formik-compatible shape 1`] = `
+<TextInput
+  allowFontScaling={true}
+  name="test input"
+  onBlur={[Function]}
+  onChangeText={[Function]}
+  onFocus={[Function]}
+  style={
+    Array [
+      Object {
+        "color": "#000000",
+        "fontSize": 16.666666666666664,
+      },
+      Object {
+        "color": "#2d3047",
+      },
+    ]
+  }
+  underlineColorAndroid="transparent"
+  value=""
+/>
+`;

@@ -1,8 +1,8 @@
 // @flow
 class ThemeError extends Error {
   constructor(...args: any[]) {
-    super(...args);
+    super(...args)
   }
 }
 
-export { ThemeError };
+export { ThemeError }

@@ -16,7 +16,7 @@
     "prepack": "yarn prepack:babel && yarn prepack:flow",
     "prepack:babel": "babel src/ -d lib --ignore '**/*.test.js'",
     "prepack:flow": "flow-copy-source src/ lib/",
-    "prettier": "prettier --jsx-bracket-same-line true --single-quote --trailing-comma all --write \"./src/**\""
+    "prettier": "prettier --write \"./src/**\""
   },
   "rnpm": {
     "assets": [
@@ -47,13 +47,14 @@
     "react": "16.5.0",
     "react-dom": "^16.3.2",
     "react-native": "0.57.0",
-    "react-native-vector-icons": "^4.6.0"
+    "react-native-vector-icons": "^4.6.0",
+    "react-test-renderer": "^16.5.2"
   },
   "peerDependencies": {
-    "react": "16.5.0",
-    "react-dom": "^16.3.2",
-    "react-native": "0.57.0",
-    "react-native-vector-icons": "4.x"
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-native": "^0.52.0",
+    "react-native-vector-icons": "*"
   },
   "jest": {
     "preset": "react-native",

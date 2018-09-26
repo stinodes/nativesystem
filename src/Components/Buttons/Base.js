@@ -1,2 +1,2 @@
 // @flow
-export { OpacityButtonBase as Base } from './OpacityButtonBase';
+export { OpacityButtonBase as Base } from './OpacityButtonBase'

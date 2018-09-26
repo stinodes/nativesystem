@@ -1,16 +1,16 @@
 // @flow
-import React from 'react';
-import { StyleSheet } from 'react-native';
-import glamorous, { withTheme } from 'glamorous-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import React from 'react'
+import { StyleSheet } from 'react-native'
+import glamorous, { withTheme } from 'glamorous-native'
+import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import { getColor, SystemView as View } from '../Theme';
-import { Text } from '../Text';
-import { Base } from '../Buttons';
+import { getColor, SystemView as View } from '../Theme'
+import { Text } from '../Text'
+import { Base } from '../Buttons'
 
-import type { ComponentType, Node } from 'react';
-import type { Color, Theme } from '../Theme';
-import { withFallback } from '../Theme/system';
+import type { ComponentType, Node } from 'react'
+import type { Color, Theme } from '../Theme'
+import { withFallback } from '../Theme/system'
 
 const styleAsRow = component =>
   glamorous(component)(
@@ -22,18 +22,18 @@ const styleAsRow = component =>
       const borderStyle = {
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderTopColor: getColor(theme, borderColor, 'fallback'),
-      };
+      }
       if (withTopBorder)
         return {
           ...borderStyle,
           borderTopWidth: StyleSheet.hairlineWidth,
           borderTopColor: getColor(theme, borderColor, 'fallback'),
-        };
-      return borderStyle;
+        }
+      return borderStyle
     },
-  );
-const StyledRowButton = styleAsRow(Base);
-const StyledRow = styleAsRow(View);
+  )
+const StyledRowButton = styleAsRow(Base)
+const StyledRow = styleAsRow(View)
 
 type Props = {
   smallPadding?: boolean,
@@ -47,7 +47,7 @@ type Props = {
   rightRender?: () => Node,
 
   theme: Theme,
-};
+}
 
 const RowComponent: ComponentType<Props> = ({
   theme,
@@ -78,7 +78,7 @@ const RowComponent: ComponentType<Props> = ({
         )}
       </View>
     </View>
-  );
+  )
 
   if (onPress)
     return (
@@ -86,17 +86,18 @@ const RowComponent: ComponentType<Props> = ({
         borderColor={borderColor}
         withTopBorder={first}
         onPress={onPress}
-        background={Base.Ripple(theme.colors.blackOlive, false)}>
+        background={Base.Ripple(theme.colors.blackOlive, false)}
+      >
         {renderedRow}
       </StyledRowButton>
-    );
+    )
   return (
     <StyledRow borderColor={borderColor} withTopBorder={first}>
       {renderedRow}
     </StyledRow>
-  );
-};
+  )
+}
 
-const Row = withTheme(RowComponent);
+const Row = withTheme(RowComponent)
 
-export { Row };
+export { Row }

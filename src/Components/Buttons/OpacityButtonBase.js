@@ -1,20 +1,20 @@
 // @flow
-import React from 'react';
+import React from 'react'
 import {
   Touchable,
   TouchableHighlight,
   TouchableOpacity,
   TouchableNativeFeedback,
-} from 'react-native';
-import { transparentize } from 'polished';
+} from 'react-native'
+import { transparentize } from 'polished'
 
 export type ButtonBaseProps = {
   highlight?: boolean | string,
   highlightOpacity?: number,
-} & Touchable.PropTypes;
+} & Touchable.PropTypes
 
 const OpacityButtonBase = (props: ButtonBaseProps) => {
-  const style = [props.style, props.containerStyle];
+  const style = [props.style, props.containerStyle]
   if (props.highlight) {
     return (
       <TouchableHighlight
@@ -26,18 +26,18 @@ const OpacityButtonBase = (props: ButtonBaseProps) => {
             : undefined
         }
       />
-    );
+    )
   }
-  return <TouchableOpacity {...props} style={style} />;
-};
+  return <TouchableOpacity {...props} style={style} />
+}
 
 OpacityButtonBase.SelectableBackground =
-  TouchableNativeFeedback.SelectableBackground || (() => null);
+  TouchableNativeFeedback.SelectableBackground || (() => null)
 OpacityButtonBase.SelectableBackgroundBorderless =
-  TouchableNativeFeedback.SelectableBackgroundBorderless || (() => null);
+  TouchableNativeFeedback.SelectableBackgroundBorderless || (() => null)
 OpacityButtonBase.Ripple =
   TouchableNativeFeedback.Ripple ||
-  ((color: string, borderless: boolean) => null);
-OpacityButtonBase.delayHandler = (handler: any => any) => handler;
+  ((color: string, borderless: boolean) => null)
+OpacityButtonBase.delayHandler = (handler: any => any) => handler
 
-export { OpacityButtonBase };
+export { OpacityButtonBase }

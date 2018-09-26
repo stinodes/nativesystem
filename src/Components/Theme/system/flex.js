@@ -1,5 +1,5 @@
 // @flow
-import type { FlexProps, ThemeProps } from '../types';
+import type { FlexProps, ThemeProps } from '../types'
 
 const properties = {
   jc: 'justifyContent',
@@ -8,17 +8,17 @@ const properties = {
   fd: 'flexDirection',
   f: 'flex',
   fw: 'flexWrap',
-};
+}
 
-const isFlexProp = key => !!properties[key];
-const flexStyleProp = key => properties[key];
+const isFlexProp = key => !!properties[key]
+const flexStyleProp = key => properties[key]
 export const flex = ({ theme, ...props }: FlexProps & ThemeProps) => {
   const styles = Object.keys(props).reduce((prev, key) => {
-    if (!isFlexProp(key)) return prev;
+    if (!isFlexProp(key)) return prev
     return {
       ...prev,
       [flexStyleProp(key)]: props[key],
-    };
-  }, {});
-  return styles;
-};
+    }
+  }, {})
+  return styles
+}

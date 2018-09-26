@@ -1,8 +1,8 @@
 // @flow
-import g from 'glamorous-native';
-import { getSpacing, View } from '../Theme';
+import g from 'glamorous-native'
+import { getSpacing, View } from '../Theme'
 
-import type { Theme } from '../Theme';
+import type { Theme } from '../Theme'
 
 const absolute = ({
   theme,
@@ -22,8 +22,8 @@ const absolute = ({
   left: l && getSpacing(theme, l),
   bottom: b && getSpacing(theme, b),
   right: r && getSpacing(theme, r),
-});
+})
 
-const Absolute = g(View)(absolute);
+const Absolute = g(View)(absolute)
 
-export { Absolute, absolute };
+export { Absolute, absolute }

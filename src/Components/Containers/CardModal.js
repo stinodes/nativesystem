@@ -1,12 +1,12 @@
 // @flow
-import * as React from 'react';
-import type { CardProps } from './Card';
-import { Card } from './Card';
-import type { Props as ModalProps } from './Modal';
-import { Modal } from './Modal';
-import { SystemView } from '../Theme/system';
+import * as React from 'react'
+import type { CardProps } from './Card'
+import { Card } from './Card'
+import type { Props as ModalProps } from './Modal'
+import { Modal } from './Modal'
+import { SystemView } from '../Theme/system'
 
-type Props = ModalProps & CardProps;
+type Props = ModalProps & CardProps
 
 const CardModal = ({ children, ...props }: Props) => {
   return (
@@ -19,7 +19,7 @@ const CardModal = ({ children, ...props }: Props) => {
         </Modal.StopPropagation>
       </SystemView>
     </Modal>
-  );
-};
+  )
+}
 
-export { CardModal };
+export { CardModal }
