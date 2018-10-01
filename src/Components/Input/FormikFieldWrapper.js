@@ -50,21 +50,25 @@ export const formikFieldWrapper = <
   return ({
     field,
     form,
+    skipHandlerProcessing,
     ...props
   }: {
     ...ComponentProps,
+    skipHandlerProcessing?: boolean,
     field: FieldProps<Val>,
     form: FormProps,
   }) => {
-    const fieldProps = {
-      name: field.name,
-      onBlur: _nativeWrapHandlerWithNameAndVal(
-        form.setFieldTouched,
-        field.name,
-        true,
-      ),
-      onChange: _nativeWrapHandlerWithName(form.setFieldValue, field.name),
-    }
+    const fieldProps = skipHandlerProcessing
+      ? field
+      : {
+          ...field,
+          onBlur: _nativeWrapHandlerWithNameAndVal(
+            form.setFieldTouched,
+            field.name,
+            true,
+          ),
+          onChange: _nativeWrapHandlerWithName(form.setFieldValue, field.name),
+        }
     return <Component {...props} {...field} {...fieldProps} form={form} />
   }
 }
