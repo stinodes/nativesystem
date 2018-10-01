@@ -75,7 +75,7 @@ describe('Formik Helpers', () => {
       expect(tree.toJSON()).toMatchSnapshot()
     })
   })
-  describe('FormikFieldWrapper', () => {
+  describe('FormikFieldWrapper (static)', () => {
     test('wraps a compatible component to take a field and form prop', () => {
       const TextField = formikFieldWrapper(
         normalizeInputProps(
@@ -126,6 +126,37 @@ describe('Formik Helpers', () => {
         </Formik>,
       )
       expect(tree.toJSON()).toMatchSnapshot()
+    })
+  })
+  describe('FormikFieldWrapper (dynamic)', () => {
+    test('Correct handlers are called with the right arguments', () => {
+      const TextField = formikFieldWrapper(
+        normalizeInputProps(
+          {
+            onChange: 'onChangeText',
+          },
+          TextInput,
+        ),
+      )
+      const tree = renderer.create(
+        <Formik initialValues={{ test: 'test' }}>
+          {() => (
+            <Field
+              theme={createTheme()
+                .useDefault()
+                .done()}
+              name="test"
+              component={TextField}
+            />
+          )}
+        </Formik>,
+      )
+      const textInputInstance = tree.root.findByType(TextInput)
+      const formInstance = tree.getInstance()
+      textInputInstance.props.onChangeText('New Value')
+      expect(formInstance.state.values).toEqual({ test: 'New Value' })
+      textInputInstance.props.onBlur()
+      expect(formInstance.state.touched).toEqual({ test: true })
     })
   })
 })

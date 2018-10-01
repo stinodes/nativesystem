@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Formik Helpers FormikFieldWrapper works well with formik! 1`] = `
+exports[`Formik Helpers FormikFieldWrapper (static) works well with formik! 1`] = `
 <TextInput
   allowFontScaling={true}
   form={
@@ -61,7 +61,7 @@ exports[`Formik Helpers FormikFieldWrapper works well with formik! 1`] = `
 />
 `;
 
-exports[`Formik Helpers FormikFieldWrapper wraps a compatible component to take a field and form prop 1`] = `
+exports[`Formik Helpers FormikFieldWrapper (static) wraps a compatible component to take a field and form prop 1`] = `
 <TextInput
   allowFontScaling={true}
   form={Object {}}

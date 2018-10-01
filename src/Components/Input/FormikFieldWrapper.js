@@ -13,14 +13,33 @@ type RequiredComponentProps<ValueType = string> = {
   onFocus?: () => any,
 }
 type FieldProps<ValueType = string> = {
+  name: string,
   value: ?ValueType,
   onChange: (?ValueType) => any,
   onBlur: () => any,
   onFocus: () => any,
 }
-type FormProps = {}
+type FormProps = {
+  setFieldTouched: (string, boolean) => any,
+  setFieldValue: <V>(string, V) => any,
+}
 type RequiredAndFormikProps<Val, Props: RequiredComponentProps<Val>> = Props &
   FieldProps<Val> & { form: FormProps }
+
+const _nativeWrapHandlerWithName = <V>(
+  handler: (string, V) => any,
+  name: string,
+): (V => any) => {
+  return (value: V) => handler(name, value)
+}
+
+const _nativeWrapHandlerWithNameAndVal = <V>(
+  handler: (string, V) => any,
+  name: string,
+  value: V,
+): (void => any) => {
+  return () => handler(name, value)
+}
 
 export const formikFieldWrapper = <
   Val,
@@ -37,7 +56,16 @@ export const formikFieldWrapper = <
     field: FieldProps<Val>,
     form: FormProps,
   }) => {
-    return <Component {...props} {...field} form={form} />
+    const fieldProps = {
+      name: field.name,
+      onBlur: _nativeWrapHandlerWithNameAndVal(
+        form.setFieldTouched,
+        field.name,
+        true,
+      ),
+      onChange: _nativeWrapHandlerWithName(form.setFieldValue, field.name),
+    }
+    return <Component {...props} {...field} {...fieldProps} form={form} />
   }
 }
 
