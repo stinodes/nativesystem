@@ -77,11 +77,13 @@ class Element extends React.Component<ElementProps> {
       extrapolate,
       extrapolateLeft,
       extrapolateRight,
+      ...props
     } = this.props
     return (
       <Consumer>
         {({ animation, inputRange }) => (
           <MovingView
+            {...props}
             t={top}
             l={left}
             r={right}
