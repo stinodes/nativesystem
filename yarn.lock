@@ -5932,6 +5932,15 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+nativesystem@^1.0.0-beta.11:
+  version "1.0.0-beta.11"
+  resolved "https://registry.yarnpkg.com/nativesystem/-/nativesystem-1.0.0-beta.11.tgz#82bc86a4bac39078fd727d4f58bca7246ba9adca"
+  dependencies:
+    create-react-context "^0.2.3"
+    fnional "^0.0.5"
+    glamorous-native "^1.4.0"
+    polished "^1.9.2"
+
 natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
