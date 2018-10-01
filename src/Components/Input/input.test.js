@@ -94,6 +94,7 @@ describe('Formik Helpers', () => {
       }
       const tree = renderer.create(
         <TextField
+          /* $FlowFixMe */
           form={{}}
           field={fieldProps}
           theme={createTheme()
@@ -128,7 +129,7 @@ describe('Formik Helpers', () => {
       expect(tree.toJSON()).toMatchSnapshot()
     })
   })
-  describe('FormikFieldWrapper (dynamic)', () => {
+  describe('FormikFieldWrapper (dynamic )', () => {
     test('Correct handlers are called with the right arguments', () => {
       const TextField = formikFieldWrapper(
         normalizeInputProps(
