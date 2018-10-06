@@ -1,0 +1,74 @@
+{
+  "name": "nativesystem",
+  "version": "1.0.0-beta.13",
+  "author": "stinodes",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "flow": "flow",
+    "test": "node node_modules/jest/bin/jest.js --watch",
+    "test-ci": "jest",
+    "storybook": "storybook start -p 7007",
+    "prepack": "yarn prepack:babel && yarn prepack:flow",
+    "prepack:babel": "babel src/ -d lib --ignore '**/*.test.js'",
+    "prepack:flow": "flow-copy-source src/ lib/",
+    "prettier": "prettier --write \"./src/**\""
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  },
+  "dependencies": {
+    "create-react-context": "^0.2.3",
+    "fnional": "^0.0.5",
+    "glamorous-native": "^1.4.0",
+    "nativesystem": "^1.0.0-beta.11",
+    "polished": "^1.9.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.1",
+    "@storybook/addon-actions": "^3.4.0-alpha.1",
+    "@storybook/addon-knobs": "^3.4.0-alpha.1",
+    "@storybook/addon-links": "^3.4.0-alpha.1",
+    "@storybook/react-native": "^3.4.0-alpha.1",
+    "babel-jest": "22.4.3",
+    "babel-preset-react-native": "4.0.0",
+    "flow-bin": "0.78",
+    "flow-copy-source": "^2.0.1",
+    "formik": "^1.3.0",
+    "jest": "^23.4.0",
+    "lerna": "^3.4.1",
+    "metro-react-native-babel-preset": "^0.45.3",
+    "prettier": "^1.14.2",
+    "react": "16.5.0",
+    "react-dom": "^16.3.2",
+    "react-native": "0.57.0",
+    "react-native-vector-icons": "^4.6.0",
+    "react-test-renderer": "^16.5.2"
+  },
+  "peerDependencies": {
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-native": "^0.52.0",
+    "react-native-vector-icons": "*"
+  },
+  "jest": {
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/?!(fnional)"
+    ],
+    "testPathIgnorePatterns": [
+      ".*/node_modules/.*",
+      "./__tests__/.*.mocks.js"
+    ]
+  }
+}
