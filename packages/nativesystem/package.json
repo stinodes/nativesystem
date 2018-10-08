@@ -27,7 +27,7 @@
     "create-react-context": "^0.2.3",
     "fnional": "^0.0.5",
     "glamorous-native": "^1.4.0",
-    "nativesystem": "^1.0.0-beta.11",
+    "coresystem": "^0.0.0",
     "polished": "^1.9.2"
   },
   "devDependencies": {
