@@ -1,0 +1,57 @@
+{
+  "name": "@apptoms/core",
+  "version": "0.0.0",
+  "description": "Core utils and functions for the system group of packages.",
+  "author": "Stijn Tytgat <stinodesigns@gmail.com>",
+  "homepage": "https://github.com/stinodes/nativesystem#readme",
+  "license": "ISC",
+  "main": "lib/index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stinodes/nativesystem.git"
+  },
+  "scripts": {
+    "flow": "flow",
+    "test": "node node_modules/jest/bin/jest.js --watch",
+    "test-ci": "jest",
+    "prepack": "yarn prepack:babel && yarn prepack:flow",
+    "prepack:babel": "babel src/ -d lib --ignore '**/*.test.js'",
+    "prepack:flow": "flow-copy-source src/ lib/",
+    "prettier": "prettier --write \"./src/**\"",
+    "dev": "yarn dev:babel && yarn dev:flow",
+    "dev:babel": "yarn babel src/ --watch -d lib --ignore '**/*.test.js'",
+    "dev:flow": "flow-copy-source --watch src/ lib/"
+  },
+  "dependencies": {
+    "fnional": "^0.0.5",
+    "jest-cli": "^23.6.0",
+    "polished": "^1.9.2"
+  },
+  "bugs": {
+    "url": "https://github.com/stinodes/nativesystem/issues"
+  },
+  "devDependencies": {
+    "flow-bin": "0.67.1",
+    "flow-typed": "^2.5.1",
+    "jest": "^23.6.0",
+    "prettier": "^1.14.3"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.js$": "babel-jest"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/?!(fnional)"
+    ],
+    "testPathIgnorePatterns": [
+      ".*/node_modules/.*"
+    ]
+  }
+}

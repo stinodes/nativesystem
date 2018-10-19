@@ -1,7 +1,48 @@
 {
-  "name": "root",
+  "name": "apptoms",
   "private": true,
   "devDependencies": {
-    "lerna": "^3.4.1"
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "babel-jest": "^23.6.0",
+    "babel-preset-react-native": "^4.0.1",
+    "flow-mono-cli": "^1.4.2",
+    "jest": "^23.6.0",
+    "jest-cli": "^23.6.0",
+    "lerna": "^3.4.1",
+    "metro-react-native-babel-preset": "^0.48.1"
+  },
+  "workspaces": {
+    "nohoist": [
+      "**/fnional"
+    ],
+    "packages": [
+      "packages/*"
+    ]
+  },
+  "scripts": {
+    "lerna": "lerna",
+    "test": "jest --watch",
+    "flow-mono": "flow-mono",
+    "_postinstall": "yarn postinstall:bootstrap && yarn postinstall:flow-mono",
+    "postinstall:bootstrap": "lerna bootstrap",
+    "postinstall:flow-mono": "flow-mono create-symlinks ./build/.flowconfig"
+  },
+  "jest": {
+    "projects": [
+      "<rootDir>/packages/*/jest.config.js"
+    ],
+    "coverageDirectory": "<rootDir>/coverage/",
+    "preset": "react-native",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
+    "collectCoverageFrom": [
+      "packages/*/src/**/*.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "transformIgnorePatterns": []
   }
 }
