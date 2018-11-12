@@ -1,5 +1,18 @@
 // @flow
-import { theme, subTheme, mod, style, num, color, alias, colors } from './theme'
+import {
+  theme,
+  subTheme,
+  mod,
+  style,
+  num,
+  color,
+  alias,
+  colors,
+  size,
+  space,
+  sizes,
+  spaces,
+} from '../theme'
 describe('Theme API', () => {
   describe('style()', () => {
     test('.generate() returns the styles for the style', () => {
@@ -256,10 +269,47 @@ describe('Theme API', () => {
     })
   })
 
+  describe('size()', () => {
+    test('.generate() returns an object with a size and name', () => {
+      expect(size('smallPadding').generate()).toEqual({
+        name: 'smallPadding',
+        size: undefined,
+      })
+    })
+    test('.use() takes a number as size', () => {
+      expect(
+        size('smallPadding')
+          .use(4)
+          .generate(),
+      ).toEqual({
+        name: 'smallPadding',
+        size: 4,
+      })
+    })
+    test('space() is an alias', () => {
+      expect(space).toEqual(size)
+    })
+  })
+
+  describe('sizes()', () => {
+    test('.generate() returns an object with sizes', () => {
+      expect(sizes().generate()).toEqual({})
+    })
+    test('.use() takes a size', () => {
+      expect(sizes([size('smallPadding', 8)]).generate()).toEqual({
+        smallPadding: { name: 'smallPadding', size: 8 },
+      })
+    })
+    test('spaces() is an alias', () => {
+      expect(spaces).toEqual(sizes)
+    })
+  })
+
   describe('theme()', () => {
     test('.generate() returns a theme object', () => {
       expect(theme().generate()).toEqual({
         colors: { alias: {}, values: {} },
+        sizes: {},
         subThemes: {},
       })
     })
@@ -274,6 +324,19 @@ describe('Theme API', () => {
           values: { red: { name: 'red', color: '#ff0000' } },
           alias: { primary: { name: 'primary', alias: 'red' } },
         },
+        sizes: {},
+        subThemes: {},
+      })
+    })
+
+    test('.use() takes sizes and adds them to the theme', () => {
+      expect(
+        theme()
+          .use(sizes([size('small', 8)]))
+          .generate(),
+      ).toEqual({
+        colors: { alias: {}, values: {} },
+        sizes: { small: { name: 'small', size: 8 } },
         subThemes: {},
       })
     })
@@ -285,6 +348,7 @@ describe('Theme API', () => {
           .generate(),
       ).toEqual({
         colors: { alias: {}, values: {} },
+        sizes: {},
         subThemes: {
           button: {
             name: 'button',
@@ -306,6 +370,7 @@ describe('Theme API', () => {
           .generate(),
       ).toEqual({
         colors: { alias: {}, values: {} },
+        sizes: {},
         subThemes: {
           button: {
             name: 'button',
@@ -335,6 +400,7 @@ describe('Theme API', () => {
           .generate(),
       ).toEqual({
         colors: { alias: {}, values: {} },
+        sizes: {},
         subThemes: {
           button: {
             name: 'button',
@@ -378,6 +444,7 @@ describe('Theme API', () => {
 
       expect(myTheme.generate()).toEqual({
         colors: { alias: {}, values: {} },
+        sizes: {},
         subThemes: {
           button: {
             name: 'button',
@@ -388,6 +455,7 @@ describe('Theme API', () => {
       })
       expect(myTheme2.generate()).toEqual({
         colors: { alias: {}, values: {} },
+        sizes: {},
         subThemes: {
           button: {
             name: 'button',
@@ -410,6 +478,20 @@ describe('Theme API', () => {
       expect(mod('large', { height: 56, borderRadius: 16 }).generate()).toEqual(
         mod('large')
           .use({ height: 56, borderRadius: 16 })
+          .generate(),
+      )
+    })
+    test('size() allows passing contents', () => {
+      expect(size('small', 8).generate()).toEqual(
+        size('small')
+          .use(8)
+          .generate(),
+      )
+    })
+    test('sizes() allows passing contents', () => {
+      expect(sizes([size('small', 8), size('medium', 16)]).generate()).toEqual(
+        sizes()
+          .use(size('small', 8), size('medium', 16))
           .generate(),
       )
     })

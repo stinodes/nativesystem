@@ -1,31 +1,44 @@
 // @flow
-import { getColor, subThemeWithModifier } from '../theme.legacy/utils'
+import type { ThemeProps, ModifierProps } from './propTypes'
 import type {
-  AlphaProps,
-  Color,
-  ColorProps,
-  ModProps,
-  RaisedProps,
-  ThemeProps,
-} from '../types'
-import type { SubTheme } from '../theme.legacy/types'
+  StyleLiteral,
+  ThemeLiteral,
+  SubThemeLiteral,
+} from '../theme/types'
 
-export const subTheme = (subTheme: string) => ({
-  theme,
-  modifier,
-}: ThemeProps & ModProps): SubTheme =>
-  subThemeWithModifier(theme, subTheme, modifier)
-
-export const backgroundColor = ({ theme, color }: ThemeProps & ColorProps) => {
-  const colorCode = getColor(theme, color)
-  return colorCode !== undefined ? { backgroundColor: colorCode } : {}
+const getSubThemeObject = (
+  theme: ThemeLiteral,
+  subTheme: string,
+): SubThemeLiteral => theme.subThemes[subTheme]
+const getStyleWithModifier = (
+  subThemeLiteral: ?SubThemeLiteral,
+  modifiers: string[],
+) => {
+  if (!subThemeLiteral) return {}
+  const subTheme = subThemeLiteral
+  const base = subTheme.style
+  const mods = modifiers.map(mod => subTheme.mods[mod]).filter(mod => !!mod)
+  return mods.reduce((prev, mod) => ({ ...prev, ...mod.style }), base)
+}
+const normalizeMods = (mods: string | string[] | void): string[] => {
+  if (!mods) return []
+  if (!Array.isArray(mods)) return [mods]
+  return mods
 }
 
-export const withFallback = (
-  styleFn: (ThemeProps & ColorProps) => { [string]: ?Color },
-  fallbackColor?: Color = 'fallback',
-) => ({ theme, color }: ThemeProps & ColorProps) =>
-  styleFn({ theme, color: color || fallbackColor })
-
-export const alpha = ({ alpha }: ThemeProps & AlphaProps) =>
-  alpha !== undefined ? { opacity: alpha } : {}
+export const getSubTheme = (
+  theme: ThemeLiteral,
+  subTheme: string,
+  modifier: void | string | string[],
+): StyleLiteral => {
+  return getStyleWithModifier(
+    getSubThemeObject(theme, subTheme),
+    normalizeMods(modifier),
+  )
+}
+export const subThemeStyle = (subTheme: string) => ({
+  theme,
+  modifier,
+}: ThemeProps & ModifierProps): StyleLiteral => {
+  return getSubTheme(theme, subTheme, modifier)
+}

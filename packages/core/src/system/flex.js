@@ -1,24 +1,44 @@
 // @flow
-import type { FlexProps, ThemeProps } from '../types'
+import type { FlexProperties, FlexPropertyKey, FlexStyleKey } from './types'
+import type { FlexProps } from './propTypes'
+import type { ThemeLiteral } from '../theme'
 
-const properties = {
+const properties: FlexProperties = {
+  f: 'flex',
+  fg: 'flexGrow',
+  fs: 'flexShrink',
+  fb: 'flexBase',
+  fd: 'flexDirection',
+
   jc: 'justifyContent',
   ai: 'alignItems',
   as: 'alignSelf',
-  fd: 'flexDirection',
-  f: 'flex',
+
   fw: 'flexWrap',
+  d: 'display',
 }
 
-const isFlexProp = key => !!properties[key]
-const flexStyleProp = key => properties[key]
-export const flex = ({ theme, ...props }: FlexProps & ThemeProps) => {
-  const styles = Object.keys(props).reduce((prev, key) => {
-    if (!isFlexProp(key)) return prev
-    return {
-      ...prev,
-      [flexStyleProp(key)]: props[key],
-    }
-  }, {})
+type FlexStyle = {
+  [FlexStyleKey]: string | number,
+}
+
+const isFlexProp = (key: FlexPropertyKey | string) => !!properties[key]
+const flexStyleProp = (key: FlexPropertyKey | string) => properties[key]
+
+const flexStyle = (props: FlexProps): FlexStyle => {
+  const propsToReduce: FlexProps = props
+
+  const styles: FlexStyle = Object.keys(propsToReduce).reduce(
+    (prev, key: FlexPropertyKey) => {
+      if (!isFlexProp(key)) return prev
+      return {
+        ...prev,
+        [flexStyleProp(key)]: propsToReduce[key],
+      }
+    },
+    { display: 'flex' },
+  )
   return styles
 }
+
+export { flexStyle }
