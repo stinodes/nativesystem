@@ -1,7 +1,7 @@
 {
   "name": "@apptoms/native-example",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "scripts": {
     "prestart": "node link-workspaces.js",
     "start": "expo start",
@@ -10,8 +10,8 @@
     "eject": "expo eject"
   },
   "dependencies": {
-    "@apptoms/core": "0.0.0",
-    "@apptoms/native": "0.0.0",
+    "@apptoms/core": "^0.0.1-alpha.0",
+    "@apptoms/native": "^0.0.1-alpha.0",
     "expo": "30",
     "glamorous-native": "^1.4.0",
     "react": "16.3.1",

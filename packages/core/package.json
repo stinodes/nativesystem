@@ -1,6 +1,6 @@
 {
   "name": "@apptoms/core",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "description": "Core utils and functions for the system group of packages.",
   "author": "Stijn Tytgat <stinodesigns@gmail.com>",
   "homepage": "https://github.com/stinodes/nativesystem#readme",

@@ -1,6 +1,6 @@
 {
   "name": "@apptoms/native",
-  "version": "0.0.0",
+  "version": "0.0.1-alpha.0",
   "author": "stinodes",
   "main": "lib/index.js",
   "files": [
@@ -24,7 +24,7 @@
     ]
   },
   "dependencies": {
-    "@apptoms/core": "^0.0.0",
+    "@apptoms/core": "^0.0.1-alpha.0",
     "create-react-context": "^0.2.3",
     "fnional": "^0.0.5",
     "glamorous-native": "^1.4.0",
